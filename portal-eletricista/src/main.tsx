@@ -1,38 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ComoFunciona from './pages/comoFunciona.tsx';
-import AreaDoCliente from './pages/AreaDoCliente.tsx';
-import AreaDoProfissional from './pages/AreaDoProfissional.tsx';
-import Conta from './pages/Conta.tsx';
+import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
+import './index.css'; // CSS global (opcional)
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/comofunciona",
-    element: <ComoFunciona />,
-  },
-  {
-    path: "/areadocliente",
-    element: <AreaDoCliente />,
-  },
-  {
-    path: "/areadoprofissional",
-    element: <AreaDoProfissional />,
-  },
-  {
-    path: "/conta",
-    element: <Conta />,
-  },
-]);
+import App from './App'; // importa o App.tsx
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-)
+    <App />
+  </StrictMode>
+);
