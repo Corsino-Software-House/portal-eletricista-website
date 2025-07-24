@@ -1,0 +1,15 @@
+.texto {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #3d63ab;
+    width: 100%;
+}

@@ -1,5 +1,5 @@
 .background {
-  background-color: #fff;
+  background-color: #3d63ab;
   display:flex;
   justify-content: flex-start;
   padding: 1rem;
@@ -16,12 +16,12 @@
 }
 
 .item {
-    color: #000;
+    color: #fff;;
     text-decoration: none;
 }
 
 .item:hover {
-    color: #3d63ab;
+    color: #f58625;
 }
 
 .menu-logo {

@@ -1,0 +1,50 @@
+.depoimentos {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.depoimentos h2 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.card .cargo {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.card .texto {
+  font-style: italic;
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.4;
+}

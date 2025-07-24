@@ -1,6 +1,8 @@
-import Header from "../../components/header/Header"
+import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import banner from "../../img/banner.webp"
+import banner from "../../img/banner.webp";
+import Depoimentos from "../../components/depoimentos/Depoimentos";
+import Chamados from "../../components/chamados/Chamados";
 import "./styles.css"
 
 export default function Inicio() {
@@ -13,17 +15,15 @@ export default function Inicio() {
         <img className="banner" src={banner} alt="Banner" />
       </div>
       <h1 className="texth1">Chamados mais Pedidos</h1>
+      <Chamados />
+
+      <Depoimentos />
   
     </section>
 
-    <section>
-      <div>
-        <p className="tex">Testando</p>
-      </div>
-    </section>
 
     <Footer />
   </>
-
+   
   );
 }

@@ -1,0 +1,63 @@
+.cadastro-prossional {
+  /*background-color: #f0f0f0;*/
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  background-color: #3d63ab;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+.button[type="submit"]:hover {
+  background-color: #12387e;
+}
+
+.login-client {
+  
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  
+}
+
+.registro-cliente {
+  color: #3d63ab;
+  text-decoration: none;
+}
