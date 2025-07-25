@@ -28,6 +28,7 @@ export default function FormCliente() {
       const resposta = await login(data.email, data.senha, tipo);
       setMensagem("Login realizado com sucesso!");
       console.log(resposta);
+      sessionStorage.setItem("token", resposta.access_token);
       navigate("/areadocliente/menu");
     } catch (erro) {
       setMensagem("Erro ao fazer login. Verifique os dados.");

@@ -9,14 +9,18 @@ import CadastroProfissional from './pages/cadastrodoprofissional/CadastroDoPross
 import CompletarPerfil from './pages/cadastrodoprofissional/completarPerfil/completarPerfil';
 import MenuCliente from './pages/areadocliente/menu/Menu';
 import MenuProfissional from './pages/areadoprofissional/menu/Menu';
+import RedirectCliente from './pages/areadocliente/RedirectCliente';
+import RedirectProfissional from './pages/areadoprofissional/RedirectProfissional';
 
 
 const router = createBrowserRouter([
   { path: '/', element: <Inicio /> },
   { path: '/comofunciona', element: <ComoFunciona /> },
-  { path: '/areadocliente', element: <AreaDoCliente /> },
+  { path: '/areadocliente', element: <RedirectCliente /> },
+  { path: '/areadocliente/login', element: <AreaDoCliente /> },
    { path: '/areadocliente/menu', element: <MenuCliente /> },
-  { path: '/areadoprofissional', element: <AreaDoProfissional /> },
+  { path: '/areadoprofissional', element: <RedirectProfissional /> },
+  { path: '/areadoprofissional/login', element: <AreaDoProfissional /> },
   { path: '/areadoprofissional/menu', element: <MenuProfissional /> },
 { path: '/areadoprofissional/completar-perfil', element: <CompletarPerfil /> },
   { path: '/conta', element: <Conta /> },

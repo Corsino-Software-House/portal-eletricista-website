@@ -11,49 +11,52 @@ import {
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles.css";
+import Header from "../../../components/header/Header";
+import Footer from "../../../components/footer/Footer";
 
 
 const menuItems = [
   {
     title: "Chamados Agendados",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum.",
+      "Visualize todos os serviços que você já agendou, com detalhes como data, horário, cliente e status do atendimento.",
     icon: <Calendar size={32} />,
-    path: "/agendar"
+    path: "/chamados-agendados"
   },
   {
     title: "Buscar Trabalhos",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum.",
+      "Encontre novas oportunidades de serviço na sua região e candidate-se para realizar atendimentos como eletricista.",
     icon: <Search size={32} />,
-    path: "/buscar"
+    path: "/buscar-trabalhos"
   },
   {
     title: "Ver Avaliações",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum.",
+      "Acompanhe o que os clientes estão dizendo sobre seus serviços e veja sua média de avaliações recebidas.",
     icon: <Star size={32} />,
-    path: "/avaliar"
+    path: "/minhas-avaliacoes"
   }
 ];
+
 
 const historicoChamados = [
   {
     title: "Concerto de tomada",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum. Sed id mollis ex, et faucibus ligula.",
+      "Reparo realizado em tomada com mau contato, incluindo substituição do espelho e verificação da fiação interna.",
     link: "#"
   },
   {
     title: "Troca de Disjuntor",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum. Sed id mollis ex, et faucibus ligula.",
+      "Substituição de disjuntor danificado por um novo, compatível com a carga elétrica do circuito, garantindo mais segurança.",
     link: "#"
   },
   {
     title: "Concerto de fio descapado",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae ipsum id dui volutpat iaculis nec ac ipsum. Sed id mollis ex, et faucibus ligula.",
+      "Isolamento e reparo de fios expostos em circuito interno, prevenindo curtos-circuitos e possíveis choques elétricos.",
     link: "#"
   }
 ];
@@ -97,7 +100,7 @@ const Dashboard = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -112,6 +115,8 @@ const Dashboard = () => {
   };
 
   return (
+    <>
+      <Header />
     <div className="dashboard-container">
       <h2 className="menu-title">Menu</h2>
       <div className="menu-grid">
@@ -129,6 +134,8 @@ const Dashboard = () => {
         </Slider>
       </div>
     </div>
+      <Footer />
+    </>
   );
 };
 
