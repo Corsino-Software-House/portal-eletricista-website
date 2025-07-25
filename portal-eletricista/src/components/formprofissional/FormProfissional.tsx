@@ -1,26 +1,90 @@
 import "./styles.css";
+import { useForm } from "react-hook-form";
+import { login } from "../../services/login.service";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+type FormData = {
+  email: string;
+  senha: string;
+};
 
 export default function AuthFormProfissional() {
+   const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<FormData>();
+  
+    const [mensagem, setMensagem] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+  
+    const tipo = "profissional";
+  
+    const onSubmit = async (data: FormData) => {
+      setLoading(true);
+      try {
+        const resposta = await login(data.email, data.senha, tipo);
+        setMensagem("Login realizado com sucesso!");
+        console.log(resposta);
+        navigate("/areadoprofissional/menu");
+      } catch (erro) {
+        setMensagem("Erro ao fazer login. Verifique os dados.");
+        console.error(erro);
+      } finally {
+        setLoading(false);
+      }
+    };
   return (
-    <>
-      <form className="form-profissional">
+ <>
+      <form className="form-cliente" onSubmit={handleSubmit(onSubmit)}>
         <h2>Login do Profissional</h2>
+
         <div className="form-group">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            id="email"
+            type="email"
+            {...register("email", {
+              required: "Email é obrigatório",
+              pattern: {
+                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                message: "Email inválido",
+              },
+            })}
+          />
+          {errors.email && <p className="erro">{errors.email.message}</p>}
         </div>
+
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <label htmlFor="password">Senha:</label>
+          <input
+            id="password"
+            type="password"
+            {...register("senha", {
+              required: "Senha é obrigatória",
+              minLength: {
+                value: 6,
+                message: "A senha deve ter pelo menos 6 caracteres",
+              },
+            })}
+          />
+          {errors.senha && <p className="erro">{errors.senha.message}</p>}
         </div>
-        <button type="submit">Acessar</button>
+
+        <button type="submit" disabled={loading}>
+          {loading ? <span className="spinner"></span> : "Acessar"}
+        </button>
+
+        {mensagem && <p className="mensagem">{mensagem}</p>}
       </form>
 
       <div className="login-client">
         <p>
           Ainda não tem conta?{" "}
           <strong>
-            <a className="registro-cliente" href="http://localhost:5173/cadastro-profissional">
+            <a className="registro-cliente" href="/cadastro-profissional">
               Registre-se
             </a>
           </strong>
