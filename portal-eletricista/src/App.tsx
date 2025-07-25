@@ -6,13 +6,19 @@ import Conta from './pages/conta/Conta';
 import Inicio from './pages/inicio/Inicio';
 import CadastroCliente from './pages/cadastrodocliente/CadastroDoCliente';
 import CadastroProfissional from './pages/cadastrodoprofissional/CadastroDoProssional';
+import CompletarPerfil from './pages/cadastrodoprofissional/completarPerfil/completarPerfil';
+import MenuCliente from './pages/areadocliente/menu/Menu';
+import MenuProfissional from './pages/areadoprofissional/menu/Menu';
 
 
 const router = createBrowserRouter([
   { path: '/', element: <Inicio /> },
   { path: '/comofunciona', element: <ComoFunciona /> },
   { path: '/areadocliente', element: <AreaDoCliente /> },
+   { path: '/areadocliente/menu', element: <MenuCliente /> },
   { path: '/areadoprofissional', element: <AreaDoProfissional /> },
+  { path: '/areadoprofissional/menu', element: <MenuProfissional /> },
+{ path: '/areadoprofissional/completar-perfil', element: <CompletarPerfil /> },
   { path: '/conta', element: <Conta /> },
   { path: '/cadastro-cliente', element: <CadastroCliente /> },
   { path: '/cadastro-profissional', element: <CadastroProfissional /> },
