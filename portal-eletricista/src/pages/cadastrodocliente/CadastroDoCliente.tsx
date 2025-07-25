@@ -6,6 +6,7 @@ import "./styles.css";
 export default function cadastrocliente() {
   return (
     <>
+      
       <Header />
   
         <CadastroCliente />
