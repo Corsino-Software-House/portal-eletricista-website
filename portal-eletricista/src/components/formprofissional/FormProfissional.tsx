@@ -28,6 +28,7 @@ export default function AuthFormProfissional() {
         const resposta = await login(data.email, data.senha, tipo);
         setMensagem("Login realizado com sucesso!");
         console.log(resposta);
+        sessionStorage.setItem("token_profissional", resposta.access_token);
         navigate("/areadoprofissional/menu");
       } catch (erro) {
         setMensagem("Erro ao fazer login. Verifique os dados.");
