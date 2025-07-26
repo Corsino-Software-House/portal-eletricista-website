@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://portal-eletricista-api.onrender.com',
 });
 
 export const completarPerfil = async (formData: FormData) => {
