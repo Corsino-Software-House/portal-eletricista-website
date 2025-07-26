@@ -15,6 +15,7 @@ import EditarPerfil from './pages/editarPerfil/EditarPerfil';
 import PrivateRoute from './PrivateRoute';
 import ProfessionalSearch from './pages/ProfessionalSearch/ProfessionalSearch';
 import ProfessionalProfile from './pages/perfildoprofissional/ProfessionalProfile';
+import AlterarSenha from './pages/alterarSenha/AlterarSenha';
 import Agendamento from './pages/agendamentodocliente/agendamento';
 
 const router = createBrowserRouter([
@@ -91,6 +92,15 @@ const router = createBrowserRouter([
   element: (
     <PrivateRoute tipo={['cliente', 'profissional']}>
       <EditarPerfil />
+    </PrivateRoute>
+  ),
+},
+
+{
+  path: '/conta/alterar-senha',
+  element: (
+    <PrivateRoute tipo={['cliente', 'profissional']}>
+      <AlterarSenha />
     </PrivateRoute>
   ),
 },
