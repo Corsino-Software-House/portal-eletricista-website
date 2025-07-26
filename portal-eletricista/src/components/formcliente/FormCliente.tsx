@@ -26,6 +26,9 @@ export default function FormCliente() {
     setLoading(true);
     try {
       const resposta = await login(data.email, data.senha, tipo);
+       localStorage.setItem("email", data.email);
+        localStorage.setItem("id", resposta.id);
+       localStorage.setItem("tipo", tipo);
       setMensagem("Login realizado com sucesso!");
       console.log(resposta);
       sessionStorage.setItem("token", resposta.access_token);
