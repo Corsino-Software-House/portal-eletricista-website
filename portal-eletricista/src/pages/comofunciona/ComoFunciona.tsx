@@ -25,23 +25,27 @@ export default function ComoFunciona() {
 
         <section className="funciona-etapas">
           <h2>Como funciona?</h2>
+          <p>Na Tech Manlight, tornamos fácil e rápido encontrar um técnico qualificado para 
+            resolver problemas elétricos, de canalização ou manutenções gerais — com segurança, 
+            qualidade e sem complicações.</p>
           <ul>
             <li>
-              📌 Publique o serviço que precisa (ex: instalar vídeo porteiro,
-              corrigir falhas elétricas)
+              <strong>Faça o seu pedido online:</strong><br/> Indique o tipo de serviço (eletricidade, canalização, smart home, etc.), a sua localização e a urgência.
             </li>
             <li>
-              📲 Técnicos certificados recebem notificações e enviam orçamentos
-            </li>
-            <li>👥 Compare avaliações, experiência e preços</li>
-            <li>
-              🔐 O sistema regula o acesso com créditos e cobra comissão apenas
-              por serviços fechados
+              <strong>Receba um técnico certificado:</strong><br/> Enviamos-lhe profissionais experientes e avaliados, com competência comprovada e apoio técnico permanente.
             </li>
             <li>
-              🚀 Garantimos agilidade, segurança e qualidade no atendimento
-            </li>
+              <strong>Pague de forma segura:</strong><br/> O pagamento é feito com total segurança através da nossa plataforma. Só paga depois de o serviço estar concluído com sucesso.
+              </li>
+            
           </ul>
+
+          <section>
+            <p>Seja para uma instalação elétrica, reparação de fugas de água ou automatização da sua casa, os nossos técnicos estão prontos para ajudar — 24 horas por dia.</p>
+            <p><strong>Com a Tech Manlight, poupa tempo, evita surpresas e tem total controlo sobre os serviços na sua casa.</strong></p>
+
+          </section>
         </section>
 
         <section className="beneficios">
@@ -67,7 +71,7 @@ export default function ComoFunciona() {
         </section>
 
         <section className="tecnicos">
-          <h2>🔧 Para Técnicos e Empresas</h2>
+          <h2>Para Técnicos e Empresas</h2>
           <p>
             Registe-se gratuitamente, ganhe visibilidade e receba pedidos de
             clientes todos os dias. Use créditos para aceder propostas e aumente

@@ -13,12 +13,39 @@ import RedirectCliente from './pages/areadocliente/RedirectCliente';
 import RedirectProfissional from './pages/areadoprofissional/RedirectProfissional';
 import EditarPerfil from './pages/editarPerfil/EditarPerfil';
 import PrivateRoute from './PrivateRoute';
+import ProfessionalSearch from './pages/ProfessionalSearch/ProfessionalSearch';
+import ProfessionalProfile from './pages/perfildoprofissional/ProfessionalProfile';
+import Agendamento from './pages/agendamentodocliente/agendamento';
 
 const router = createBrowserRouter([
   { path: '/', element: <Inicio /> },
   { path: '/comofunciona', element: <ComoFunciona /> },
   { path: '/areadocliente', element: <RedirectCliente /> },
   { path: '/areadocliente/login', element: <AreaDoCliente /> },
+
+  { path: '/profissionais', 
+    element: (
+      <PrivateRoute tipo="cliente">
+        <ProfessionalSearch /> 
+      </PrivateRoute>
+    ),
+  },
+
+  { path: '/profissionais/:id', 
+    element: (
+      <PrivateRoute tipo="cliente">
+        <ProfessionalProfile /> 
+      </PrivateRoute>
+    ),
+  },
+
+  { path: '/agendamento', 
+    element: (
+      <PrivateRoute tipo="cliente">
+        <Agendamento /> 
+      </PrivateRoute>
+    ),
+  },
 
   {
     path: '/areadocliente/menu',
