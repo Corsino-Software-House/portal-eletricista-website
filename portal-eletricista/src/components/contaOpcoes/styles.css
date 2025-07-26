@@ -1,36 +1,15 @@
-.conta-container {
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: "Segoe UI", sans-serif;
-}
-
-.conta-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #333;
-}
-
-.conta-info, .conta-opcoes {
-  margin-bottom: 2rem;
+.conta-opcoes {
   background-color: #f9f9f9;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
-.conta-info h2, .conta-opcoes h2 {
+.conta-opcoes h2 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   color: #444;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  color: #555;
 }
 
 .opcoes-lista {
@@ -47,11 +26,13 @@
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.1s;
+  text-align: left;
 }
 
 .opcoes-lista button:hover {
-  background-color: #1259a5;
+  background-color: #1459a0;
+  transform: translateY(-1px);
 }
 
 .opcoes-lista .sair {
