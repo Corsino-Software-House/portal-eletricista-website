@@ -20,3 +20,18 @@ export const completarPerfil = async (formData: FormData) => {
     throw error;
   }
 };
+
+export const completarPerfilCliente = async (formData: FormData) => {
+  try {
+    const response = await api.put('/cliente/complete-profile', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    const err = error as any;
+    console.error('Erro ao completar perfil:', err.response?.data || err.message);
+    throw error;
+  }
+};
