@@ -5,7 +5,7 @@
 }
 
 .chamado__container {
-  width: 70%;
+  width: 90%;
   max-width: 1000px;
   display: flex;
   flex-direction: column;
@@ -17,16 +17,17 @@
   align-items: flex-start;
   background-color: #f9f9f9;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
 }
 
 .chamado__item img {
-  width: 20%; /*Aumenta o tamanho da imagem e diminue, pode usar % ou px*/
+  width: 30%; /*Aumenta o tamanho da imagem e diminue, pode usar % ou px*/
   height: auto;
   margin-right: 1rem;
   object-fit: contain;
+  border-radius: 12px;
 }
 
 .chamado__texto {
@@ -57,6 +58,14 @@
     margin-top: 1rem;
 }
 
+.chamado__select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
 @media (max-width: 600px) {
   .chamado__item {
     flex-direction: column;
@@ -66,6 +75,8 @@
 
   .chamado__item img {
     margin: 0 0 1rem 0;
+    width: 100%;
+
   }
 
   .chamado__texto {
