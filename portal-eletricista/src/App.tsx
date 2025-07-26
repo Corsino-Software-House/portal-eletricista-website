@@ -11,26 +11,69 @@ import MenuCliente from './pages/areadocliente/menu/Menu';
 import MenuProfissional from './pages/areadoprofissional/menu/Menu';
 import RedirectCliente from './pages/areadocliente/RedirectCliente';
 import RedirectProfissional from './pages/areadoprofissional/RedirectProfissional';
-
+import EditarPerfil from './pages/editarPerfil/EditarPerfil';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   { path: '/', element: <Inicio /> },
   { path: '/comofunciona', element: <ComoFunciona /> },
   { path: '/areadocliente', element: <RedirectCliente /> },
   { path: '/areadocliente/login', element: <AreaDoCliente /> },
-   { path: '/areadocliente/menu', element: <MenuCliente /> },
+
+  {
+    path: '/areadocliente/menu',
+    element: (
+      <PrivateRoute tipo="cliente">
+        <MenuCliente />
+      </PrivateRoute>
+    ),
+  },
+
   { path: '/areadoprofissional', element: <RedirectProfissional /> },
   { path: '/areadoprofissional/login', element: <AreaDoProfissional /> },
-  { path: '/areadoprofissional/menu', element: <MenuProfissional /> },
-{ path: '/areadoprofissional/completar-perfil', element: <CompletarPerfil /> },
-  { path: '/conta', element: <Conta /> },
+
+  {
+    path: '/areadoprofissional/menu',
+    element: (
+      <PrivateRoute tipo="profissional">
+        <MenuProfissional />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/areadoprofissional/completar-perfil',
+    element: (
+      <PrivateRoute tipo="profissional">
+        <CompletarPerfil />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+  path: '/conta',
+  element: (
+    <PrivateRoute tipo={['cliente', 'profissional']}>
+      <Conta />
+    </PrivateRoute>
+  ),
+},
+
+ {
+  path: '/conta/editar-perfil',
+  element: (
+    <PrivateRoute tipo={['cliente', 'profissional']}>
+      <EditarPerfil />
+    </PrivateRoute>
+  ),
+},
+
   { path: '/cadastro-cliente', element: <CadastroCliente /> },
   { path: '/cadastro-profissional', element: <CadastroProfissional /> },
 ]);
 
 function App() {
   return <RouterProvider router={router} />;
-  
 }
 
 export default App;
