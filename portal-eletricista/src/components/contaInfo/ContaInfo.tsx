@@ -7,6 +7,7 @@ export default function ContaInfo() {
     nome: string
     email: string
     fotoUrl: string
+    telefone: string
   } | null>(null)
 
   const [loading, setLoading] = useState(true)
@@ -57,6 +58,7 @@ export default function ContaInfo() {
         <div className="info-detalhes">
           <div><strong>Nome:</strong> {usuario.nome}</div>
           <div><strong>Email:</strong> {usuario.email}</div>
+          <div><strong>Telefone:</strong> {usuario.telefone}</div>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import Inicio from './pages/inicio/Inicio';
 import CadastroCliente from './pages/cadastrodocliente/CadastroDoCliente';
 import CadastroProfissional from './pages/cadastrodoprofissional/CadastroDoProssional';
 import CompletarPerfil from './pages/cadastrodoprofissional/completarPerfil/completarPerfil';
+import CompletarPerfilCliente from './pages/cadastrodocliente/completarPerfil/completarPerfil';
 import MenuCliente from './pages/areadocliente/menu/Menu';
 import MenuProfissional from './pages/areadoprofissional/menu/Menu';
 import RedirectCliente from './pages/areadocliente/RedirectCliente';
@@ -71,11 +72,13 @@ const router = createBrowserRouter([
 
   {
     path: '/areadoprofissional/completar-perfil',
-    element: (
-      <PrivateRoute tipo="profissional">
+    element: 
         <CompletarPerfil />
-      </PrivateRoute>
-    ),
+  },
+
+  {
+    path: '/areadocliente/completar-perfil',
+    element: <CompletarPerfilCliente />
   },
 
   {
