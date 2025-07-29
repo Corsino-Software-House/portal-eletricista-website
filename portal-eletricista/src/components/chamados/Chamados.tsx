@@ -6,7 +6,7 @@ export default function Chamados() {
       <section className="chamado">
         <div className="chamado__container">
           <div className="chamado__item">
-            <img src="\public\img\servicos.webp" alt="Concerto de fio descapado" />
+            <img src="/servicos.webp" alt="Concerto de fio descapado" />
             <div className="chamado__texto">
               <h3>Serviços Elétricos Residenciais e Comerciais</h3>
               <p>Precisa de instalar, renovar ou reparar a instalação elétrica da sua casa ou empresa? Os nossos eletricistas certificados garantem um trabalho seguro, eficiente e dentro das normas legais. Desde quadros elétricos e disjuntores até à iluminação interior e exterior, tratamos de tudo com rigor e atenção ao detalhe. Peça já o seu orçamento!</p>
@@ -29,7 +29,7 @@ export default function Chamados() {
           </div>
 
           <div className="chamado__item">
-            <img src="\public\img\automacoes.webp" alt="Troca de disjuntor" />
+            <img src="/automacoes.webp" alt="Troca de disjuntor" />
             <div className="chamado__texto">
               <h3>Automação Residencial / Smart Home</h3>
               <p>Transforme a sua casa numa casa inteligente! Instalamos e configuramos sistemas domóticos com assistentes virtuais, iluminação automática, tomadas inteligentes, câmaras de segurança e muito mais. Controle tudo à distância, com conforto e eficiência energética. Comece hoje a modernizar o seu lar.</p>
@@ -50,7 +50,7 @@ export default function Chamados() {
           </div>
 
           <div className="chamado__item">
-            <img src="\public\img\canalizacao.webp" alt="Concerto de Tomada" />
+            <img src="/canalizacao.webp" alt="Concerto de Tomada" />
             <div className="chamado__texto">
               <h3>Canalização Profissional</h3>
               <p>Tem fugas de água, entupimentos ou precisa de instalar novos equipamentos sanitários? Conte com os nossos canalizadores experientes para resolver rapidamente qualquer problema. Realizamos desde pequenas reparações até canalizações completas para remodelações. Trabalhamos com materiais de qualidade e mão-de-obra especializada.</p>
@@ -73,7 +73,7 @@ export default function Chamados() {
           </div>
 
            <div className="chamado__item">
-            <img src="\public\img\manutencao.webp" alt="Concerto de Tomada" />
+            <img src="/manutencao.webp" alt="Concerto de Tomada" />
             <div className="chamado__texto">
               <h3>Manutenção Geral e Pequenas Reparações</h3>
               <p>Para aqueles serviços "chatos" que ninguém quer fazer — nós tratamos disso por si. Instalamos suportes de TV, luminárias, cortinados, fazemos pequenas remodelações em cozinhas e casas de banho e garantimos a manutenção periódica dos seus sistemas. Serviço rápido, limpo e feito por profissionais.</p>
@@ -91,7 +91,7 @@ export default function Chamados() {
           </div>
 
           <div className="chamado__item">
-            <img src="\public\img\emergencia.webp" alt="Concerto de Tomada" />
+            <img src="/emergencia.webp" alt="Concerto de Tomada" />
             <div className="chamado__texto">
               <h3>Emergências e Urgências 24h</h3>
               <p>Problemas elétricos ou canalizações a qualquer hora do dia (ou da noite)? A Tech Manlight tem uma equipa pronta para responder 24 horas por dia, todos os dias. Se tem falta de luz, um quadro a disparar, fugas graves ou entupimentos, não espere. Ligue-nos e resolvemos rapidamente, com técnicos preparados para emergências.</p>
@@ -109,7 +109,7 @@ export default function Chamados() {
           </div>
 
           <div className="chamado__item">
-            <img src="\public\img\vantagens.webp" alt="Concerto de Tomada" />
+            <img src="/vantagens.webp" alt="Concerto de Tomada" />
             <div className="chamado__texto">
               <h3>Vantagens para Técnicos Profissionais</h3>
               <p>É técnico e quer trabalhar connosco? A Tech Manlight oferece pedidos filtrados por zona e tipo de serviço, pagamentos garantidos, flexibilidade total e acesso a clientes com perfis verificados. Cresça profissionalmente com o nosso apoio técnico e comercial — e torne-se um dos nossos parceiros preferenciais.</p>

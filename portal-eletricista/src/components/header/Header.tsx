@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="background">
 
-      <img src="\public\img\logo1.jpg" alt="logo" style={{  marginLeft: '100px' }} />
+      <img src="/logo1.jpg" alt="logo" style={{  marginLeft: '100px' }} />
 
       <div className="menu-principal">
         <a className="item" href="/">Início</a>

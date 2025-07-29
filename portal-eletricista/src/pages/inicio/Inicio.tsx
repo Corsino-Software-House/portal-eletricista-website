@@ -1,6 +1,6 @@
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import banner from "../../../public/img/banner.webp";
+import banner from "../../../public/banner.webp";
 import Depoimentos from "../../components/depoimentos/Depoimentos";
 import Chamados from "../../components/chamados/Chamados";
 import "./styles.css"

@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
         </section>
         <section className="logo-bancos">
-          <img src="\public\img\bancoscartoes.webp" alt="logo" width={200}/>
+          <img src="/bancoscartoes.webp" alt="logo" width={200}/>
           
         </section>
 

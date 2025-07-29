@@ -24,10 +24,11 @@ export default function CadastroCliente() {
   const onSubmit = async (data: FormData) => {
     try {
       const resposta = await cadastroCliente(data.nome, data.email, data.senha);
+      localStorage.setItem("clienteId", String(resposta.id));
       setMensagem("Cliente cadastrado com sucesso!");
       console.log(resposta);
       reset();
-      navigate("/areadocliente");
+      navigate("/areadocliente/completar-perfil");
     } catch (erro) {
       setMensagem("Erro ao cadastrar. Verifique os dados.");
       console.error(erro);
