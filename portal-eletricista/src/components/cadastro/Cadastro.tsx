@@ -13,7 +13,7 @@ const Cadastro: React.FC = () => {
           <input type="password" placeholder="Senha:" required />
           <input type="password" placeholder="Confirmar Senha:" required />
           <button type="submit">Cadastrar-se</button>
-          <a href="#">Acesso de <strong>Login</strong></a>
+          <a href="./login">Acesso de <strong>Login</strong></a>
           
         </form>
         
