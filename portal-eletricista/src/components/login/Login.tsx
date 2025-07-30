@@ -12,7 +12,7 @@ const Login: React.FC = () => {
           <input type="password" placeholder="Senha:" required />
           <button type="submit">Entrar</button>
           <a href="#">Esqueceu a senha? <strong>Clique aqui</strong></a>
-          <a href="#">Cadastra-se</a>
+          <a href="./cadastro"><strong>Cadastra-se</strong></a>
         </form>
       </div>
     </div>
