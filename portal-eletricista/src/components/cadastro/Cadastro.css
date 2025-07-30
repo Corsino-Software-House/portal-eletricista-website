@@ -1,0 +1,59 @@
+.cadastro-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.cadastro-image {
+  flex: 1;
+  background-image: url('/public/bannercadastro.webp'); /* Substitua com o caminho correto da sua imagem */
+  background-size: cover;
+  background-position: center;
+}
+
+.cadastro-form {
+  flex: 0.4;
+  background-color: #3b5998;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+}
+
+.cadastro-form h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #ffff;
+}
+
+.cadastro-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-form input {
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+.cadastro-form  button{
+  padding: 16px;
+  border: 2px solid #ffff;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cadastro-form a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}
+

@@ -21,14 +21,14 @@ const menuItems = [
     description:
       "Solicite a visita de um profissional para realizar serviços elétricos no local, escolhendo data e horário conforme sua disponibilidade.",
     icon: <Calendar size={32} />,
-    path: "/agendar"
+    path: "/agendamento"
   },
   {
     title: "Buscar Profissionais",
     description:
       "Encontre eletricistas qualificados próximos de você, filtrando por especialidade, localização e avaliações de outros clientes.",
     icon: <Search size={32} />,
-    path: "/buscar"
+    path: "/profissionais"
   },
   {
     title: "Avaliar Profissionais",
@@ -44,19 +44,19 @@ const historicoChamados = [
     title: "Concerto de tomada",
     description:
       "Reparo realizado em tomada com mau contato, incluindo substituição do espelho e verificação da fiação interna.",
-    link: "#"
+    link: "/avaliacao"
   },
   {
     title: "Troca de Disjuntor",
     description:
       "Substituição de disjuntor danificado por um novo, compatível com a carga elétrica do circuito, garantindo mais segurança.",
-    link: "#"
+    link: "/avaliacao"
   },
   {
     title: "Concerto de fio descapado",
     description:
       "Isolamento e reparo de fios expostos em circuito interno, prevenindo curtos-circuitos e possíveis choques elétricos.",
-    link: "#"
+    link: "/avaliacao"
   }
 ];
 
