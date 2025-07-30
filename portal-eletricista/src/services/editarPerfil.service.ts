@@ -15,7 +15,7 @@ export const editarPerfilProfissional = (data: FormData) => {
 };
 
 export const editarPerfilCliente = (data: FormData) => {
-  return axios.put('/cliente/edit-profile', data, {
+  return api.put('/cliente/edit-profile', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
