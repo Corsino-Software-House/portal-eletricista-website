@@ -1,0 +1,76 @@
+.detalhes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background: #f0f2f5;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.detalhes-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.detalhes-card:hover {
+  transform: translateY(-5px);
+}
+
+.detalhes-card h1 {
+  color: #2b5dd1;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.descricao {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-grid div {
+  background: #f7f9fc;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.info-grid strong {
+  color: #333;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.info-grid p {
+  margin: 0;
+  color: #555;
+}
+
+.btn-candidatar {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: #2b5dd1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-candidatar:hover {
+  background-color: #1d47a0;
+}
