@@ -1,0 +1,106 @@
+.creditos-wrapper {
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f7fa;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.creditos-wrapper h1 {
+  color: #1e3a8a;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sub-info {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  justify-items: center;
+}
+
+.plano-card {
+  background: #ffffff;
+  border: 2px solid #e0e7ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 260px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, border-color 0.3s;
+}
+
+.plano-card:hover {
+  transform: translateY(-6px);
+  border-color: #1e3a8a;
+}
+
+.plano-card h2 {
+  font-size: 1.4rem;
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+}
+
+.preco {
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.creditos {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 1.2rem;
+}
+
+.btn-adquirir {
+  background-color: #1e3a8a;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-adquirir:hover {
+  background-color: #162f6a;
+}
+
+.destaque {
+  border: 3px solid #facc15;
+  background: #fffbea;
+  transform: scale(1.05);
+}
+
+.destaque h2 {
+  color: #ca8a04;
+}
+
+.info-final {
+  background: #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
+  text-align: left;
+}
+
+.info-final h3 {
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+}
+
+.info-final p {
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.5;
+}
