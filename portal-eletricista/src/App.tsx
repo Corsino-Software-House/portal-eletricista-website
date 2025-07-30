@@ -18,12 +18,34 @@ import ProfessionalSearch from './pages/ProfessionalSearch/ProfessionalSearch';
 import ProfessionalProfile from './pages/perfildoprofissional/ProfessionalProfile';
 import AlterarSenha from './pages/alterarSenha/AlterarSenha';
 import Agendamento from './pages/agendamentodocliente/agendamento';
+import AvaliacaoProfissional from './pages/avaliacao/AvaliacaoProfissional';
+import Avaliar from './pages/avaliar/AvaliarProfissional';
+import Login from './pages/Login/Login';
+import Cadastro from './pages/cadastro/Cadastro';
 
 const router = createBrowserRouter([
   { path: '/', element: <Inicio /> },
   { path: '/comofunciona', element: <ComoFunciona /> },
   { path: '/areadocliente', element: <RedirectCliente /> },
   { path: '/areadocliente/login', element: <AreaDoCliente /> },
+  { path: '/login', element: <Login /> },
+  { path: '/cadastro', element: <Cadastro /> },
+
+  { path: '/avaliar', 
+    element: (
+      <PrivateRoute tipo="cliente">
+        <Avaliar />
+      </PrivateRoute>
+    ),
+  },
+
+  { path: '/avaliacao', 
+    element: (
+      <PrivateRoute tipo="cliente">
+        <AvaliacaoProfissional  />
+      </PrivateRoute>
+    ),
+  },
 
   { path: '/profissionais', 
     element: (

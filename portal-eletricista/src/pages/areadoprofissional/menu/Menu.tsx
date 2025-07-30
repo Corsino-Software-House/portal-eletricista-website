@@ -35,8 +35,8 @@ const menuItems = [
     description:
       "Acompanhe o que os clientes estão dizendo sobre seus serviços e veja sua média de avaliações recebidas.",
     icon: <Star size={32} />,
-    path: "/minhas-avaliacoes"
-  }
+    path: "/ver-avaliacoes"
+  },
 ];
 
 
@@ -45,19 +45,19 @@ const historicoChamados = [
     title: "Concerto de tomada",
     description:
       "Reparo realizado em tomada com mau contato, incluindo substituição do espelho e verificação da fiação interna.",
-    link: "#"
+    link: "/avaliacao"
   },
   {
     title: "Troca de Disjuntor",
     description:
       "Substituição de disjuntor danificado por um novo, compatível com a carga elétrica do circuito, garantindo mais segurança.",
-    link: "#"
+    link: "/avaliacao"
   },
   {
     title: "Concerto de fio descapado",
     description:
       "Isolamento e reparo de fios expostos em circuito interno, prevenindo curtos-circuitos e possíveis choques elétricos.",
-    link: "#"
+    link: "/avaliacao"
   }
 ];
 
