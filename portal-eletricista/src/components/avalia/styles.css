@@ -1,13 +1,13 @@
 .cardAvaliar {
-  margin: 100px 50px 50px 100px;
-  background-color: #ffff;
+  
+  background-color: #fff;
   padding: 16px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  width: 300px;
-  height: 400px;
-  
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 320px;
+  margin: 24px auto;
 }
 
 .profile-image {
@@ -15,7 +15,7 @@
   height: 70px;
   border-radius: 50%;
   border: 3px solid #3d63ab;
-  background-color: #ffff;
+  background-color: #fff;
   background-size: cover;
   background-position: center;
   margin: 0 auto 12px auto;
@@ -32,13 +32,22 @@
   margin: 6px 0;
 }
 
+.botoes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
 .botoes button {
   background-color: #3d63ab;
+  color: white;
   border: none;
-  margin: 4px;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .cargo {
@@ -49,4 +58,39 @@
 .descricao {
   font-size: 14px;
   margin-top: 2px;
+}
+
+/* Se houver request-info no card */
+.request-info {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.request-info h4 {
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #3d63ab;
+}
+
+.request-info p {
+  margin: 2px 0;
+  font-size: 13px;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 600px) {
+  .cardAvaliar {
+    margin: 16px auto;
+    padding: 12px;
+  }
+
+  .botoes {
+    flex-direction: column;
+  }
+
+  .botoes button {
+    width: 100%;
+  }
 }

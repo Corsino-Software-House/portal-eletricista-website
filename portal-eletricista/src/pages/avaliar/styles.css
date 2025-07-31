@@ -1,0 +1,60 @@
+.profissionais-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1200px; /* limita largura para centralizar */
+  margin: 0 auto;
+}
+
+.cardAvaliar {
+  width: 180px; /* largura fixa melhor para cards */
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 8px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.paginacao button {
+  flex: 1; /* botões com mesma largura */
+  max-width: 120px;
+  padding: 10px 0;
+  border: none;
+  background-color: #3d63ab;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.paginacao button:hover:not(:disabled) {
+  background-color: #2b4583;
+}
+
+.paginacao button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.paginacao span {
+  min-width: 100px;
+  text-align: center;
+}

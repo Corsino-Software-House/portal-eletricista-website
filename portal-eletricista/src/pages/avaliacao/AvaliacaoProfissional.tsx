@@ -1,18 +1,18 @@
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import AvaliacaoProfissional from "../../components/avaliacaoprofissional/AvaliacaoProfissional";   
-import "./styles.css"
+import "./styles.css";
 
-export default function avaliacao() {
+export default function Avaliacao() {
   return (
-    
     <>
-    <Header />
-    <section className="avaliacao-profissional">
-    <AvaliacaoProfissional name="Nome do Profissional" />
-    </section>
-    <Footer />
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100vh" }}>
+      <Header />
+      <section className="avaliacao-profissional">
+        <AvaliacaoProfissional />
+      </section>
+      <Footer />
+      </div>
     </>
-    
-  )
+  );
 }
