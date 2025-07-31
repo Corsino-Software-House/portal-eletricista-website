@@ -1,40 +1,51 @@
+/* --- Estilos para Desktop (Telas Largas) --- */
 .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    background-color: #3d63ab;
-    width: 100%;
+  display: flex;
+  justify-content: space-between; /* Coloca um item em cada ponta */
+  align-items: center;
+  height: 100px;
+  background-color: #3d63ab;
+  width: 100%;
+  padding: 0 2rem; /* Adiciona um espaçamento nas laterais */
+  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 70%;
-    padding: 0 20px;
+.footer-texto {
+  color: white;
+  font-size: 16px;
 }
 
-.logo-bancos {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    max-width: 30%;
-    width: 20px;
-    gap: 20px;
-    
+.footer-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-.texto {
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    padding: 20px;
+.footer-link:hover {
+  text-decoration: underline;
 }
 
-.linkfooter {
-    color: white;
-    text-decoration: none;
+.footer-logos {
+  max-width: 200px; /* Define uma largura máxima para a imagem */
+  height: auto; /* Mantém a proporção da imagem */
 }
 
+/* --- Media Query para Mobile (Telas Menores) --- */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column; /* 💡 Empilha os itens verticalmente */
+    justify-content: center; /* Centraliza o conteúdo no eixo vertical */
+    height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    padding: 1.5rem 1rem; /* Ajusta o padding para mobile */
+    gap: 1rem; /* Adiciona um espaço entre o texto e a imagem */
+  }
+
+  .footer-texto {
+    text-align: center; /* Centraliza o texto */
+    order: 2; /* Opcional: Coloca o texto depois da imagem */
+  }
+
+  .footer-logos {
+    order: 1; /* Opcional: Coloca a imagem antes do texto */
+  }
+}

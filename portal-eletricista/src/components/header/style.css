@@ -1,75 +1,84 @@
+/* --- Estilos Gerais --- */
 .background {
   background-color: #3d63ab;
-  display:flex;
-  justify-content: flex-start;
-  padding: 1rem;
-}
-
-.menu-principal {
   display: flex;
+  justify-content: space-between; /* Alinha itens nas extremidades */
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 50%;
-  margin: 0 auto;
-  font-weight: 500;
+  padding: 1rem 2rem; /* Adiciona padding nas laterais */
+  position: relative; /* Necessário para o menu mobile */
 }
 
-.item {
-    color: #fff;;
-    text-decoration: none;
-}
-
-.item:hover {
-    color: #f58625;
-}
-
-.menu-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #66aaff;
-  padding-left: 5em;
-}
-
-.menu-toggle {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: none;
+.logo {
+  height: 50px; /* Exemplo de altura, ajuste conforme necessário */
 }
 
 .menu-nav {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem; /* Espaçamento entre os itens */
 }
 
-.menu-link {
-  color: white;
+.item {
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s;
+  font-weight: 500;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
 }
 
-.menu-link:hover {
-  color: #3d63ab;
+.item:hover {
+  color: #0f367f;
 }
 
-/* Responsivo */
+/* Oculta o botão hambúrguer em telas grandes */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+}
+
+
+/* --- Media Query para Responsividade (Telas menores que 768px) --- */
 @media (max-width: 768px) {
+  /* Mostra o botão hambúrguer */
   .menu-toggle {
     display: block;
+    width: 10%;
+    color: #ffff;
+    background-color: transparent;
+  
   }
 
+  .menu-toggle:hover{
+    display: block;
+    width: 10%;
+    color: #ffff;
+    background-color: transparent;
+  }
+
+  /* Esconde o menu de navegação por padrão */
   .menu-nav {
     display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
+    flex-direction: column; /* Itens em coluna */
+    position: absolute; /* Para sobrepor o conteúdo */
+    top: 100%; /* Começa logo abaixo do header */
+    right: 0;
+    width: 100%; /* Ocupa toda a largura */
+    background-color: #3d63ab;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  /* Quando o menu está ativo (classe 'active' foi adicionada via React) */
   .menu-nav.active {
-    display: flex;
+    display: flex; /* Torna o menu visível */
+  }
+
+  .item {
+    text-align: center;
+    width: 100%;
   }
 }
