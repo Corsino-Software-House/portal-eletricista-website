@@ -7,9 +7,12 @@ export default function Search() {
   return (
 
     <>
+   
     <Header />
     <ProfessionalSearch />
+     <div style={{height: "10vh" }}>
     <Footer />
+    </div>
     </>
   )
 }

@@ -68,11 +68,10 @@ const MenuCard = ({ title, description, icon, path }: any) => (
   </Link>
 );
 
-const HistoricoCard = ({ title, description, link }: any) => (
+const HistoricoCard = ({ title, description }: any) => (
   <div className="card historico-card">
     <h4>{title}</h4>
     <p>{description}</p>
-    <a href={link} className="avaliar-link">Avaliar</a>
   </div>
 );
 
@@ -124,7 +123,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <h2 className="historico-title">Historico de Chamados</h2>
+      <h2 className="historico-title">Historico de Projetos</h2>
       <div className="carousel-wrapper">
         <Slider {...settings} className="historico-carousel">
           {historicoChamados.map((item, idx) => (
