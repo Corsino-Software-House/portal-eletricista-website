@@ -1,0 +1,66 @@
+.trabalhos-wrapper {
+  padding: 2rem;
+  background: #f2f4f8;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.trabalhos-wrapper h1 {
+  font-size: 2rem;
+  color: #3366cc;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.trabalhos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.trabalho-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 6px solid #3366cc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.trabalho-card:hover {
+  transform: translateY(-5px);
+}
+
+.trabalho-card h2 {
+  font-size: 1.3rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.trabalho-card .descricao {
+  font-size: 1rem;
+  margin: 0.5rem 0 0.8rem;
+  color: #555;
+}
+
+.trabalho-card p {
+  margin: 0.4rem 0;
+  color: #444;
+}
+
+.trabalho-card button {
+  margin-top: 1rem;
+  background-color: #3366cc;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.trabalho-card button:hover {
+  background-color: #254a9c;
+  transform: scale(1.05);
+}

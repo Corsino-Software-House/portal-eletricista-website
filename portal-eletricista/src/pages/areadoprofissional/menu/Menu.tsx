@@ -21,21 +21,21 @@ const menuItems = [
     description:
       "Visualize todos os serviços que você já agendou, com detalhes como data, horário, cliente e status do atendimento.",
     icon: <Calendar size={32} />,
-    path: "/chamados-agendados"
+    path: "/areadoprofissional/chamados-agendados"
   },
   {
     title: "Buscar Trabalhos",
     description:
       "Encontre novas oportunidades de serviço na sua região e candidate-se para realizar atendimentos como eletricista.",
     icon: <Search size={32} />,
-    path: "/buscar-trabalhos"
+    path: "/areadoprofissional/buscar-trabalhos"
   },
   {
     title: "Ver Avaliações",
     description:
       "Acompanhe o que os clientes estão dizendo sobre seus serviços e veja sua média de avaliações recebidas.",
     icon: <Star size={32} />,
-    path: "/ver-avaliacoes"
+    path: "/areadoprofissional/minhas-avaliacoes"
   },
 ];
 
