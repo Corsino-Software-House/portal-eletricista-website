@@ -7,11 +7,13 @@ import './Styles.css'
 export default function agendamento() {
   return (
     <>
+    
       
         <Header />
         <BookingForm />
         <Footer />
       
+    
     </>
   );
 }

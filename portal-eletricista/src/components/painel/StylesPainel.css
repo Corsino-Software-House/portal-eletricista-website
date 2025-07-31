@@ -1,0 +1,47 @@
+Dashboard.css
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.card h3 {
+  color: #555;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Cores específicas para os cards */
+.card.received p {
+  color: #28a745; /* Verde */
+}
+.card.pending p {
+  color: #ffc107; /* Amarelo */
+}
+.card.total p {
+  color: #007bff; /* Azul */
+}
+.card.withdrawal p {
+  color: #dc3545; /* Vermelho */
+}
+/* Exemplo no Dashboard.css para os novos cards */
+.card.clients p {
+  color: #17a2b8; /* Exemplo de cor azul ciano */
+}
+.card.services p {
+  color: #6c757d; /* Exemplo de cor cinza escuro */
+}
