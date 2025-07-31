@@ -1,33 +1,27 @@
 .avaliacoes-section {
   padding: 2rem;
-  max-width: 700px;
-  margin: auto;
-  font-family: 'Trebuchet MS', sans-serif;
+  background-color: #f5f5f5;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .avaliacoes-section h1 {
+  margin-bottom: 1.5rem;
   font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
   color: #333;
 }
 
 .avaliacao-card {
-  border: 1px solid #e3e3e3;
+  background: white;
+  padding: 1rem 1.5rem;
   border-radius: 10px;
-  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 1.5rem;
-  background-color: #fafafa;
-  transition: box-shadow 0.3s ease;
-}
-
-.avaliacao-card:hover {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .stars {
-  font-size: 1.4rem;
-  color: #f7c948;
+  font-size: 1.2rem;
+  color: #ffbf00;
   margin-bottom: 0.5rem;
 }
 
@@ -37,6 +31,35 @@
 }
 
 .avaliacao-card span {
-  font-size: 0.9rem;
-  color: #777;
+  display: block;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.paginacao button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.paginacao button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.paginacao span {
+  font-weight: bold;
+  font-size: 1rem;
 }
