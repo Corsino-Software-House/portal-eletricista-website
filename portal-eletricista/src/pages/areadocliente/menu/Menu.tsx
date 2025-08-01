@@ -2,11 +2,12 @@
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import {
-  Calendar,
+  NotebookText,
   Search,
   Star,
+  User,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
 } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -17,10 +18,10 @@ import Footer from "../../../components/footer/Footer";
 
 const menuItems = [
   {
-    title: "Agendar Chamado",
+    title: "Publicar Projetos",
     description:
-      "Solicite a visita de um profissional para realizar serviços elétricos no local, escolhendo data e horário conforme sua disponibilidade.",
-    icon: <Calendar size={32} />,
+      "Acesse sua conta agora para visualizar e gerenciar todos os seus projetos publicados. Tenha controle total sobre suas criações e veja como estão performando.",
+    icon: <NotebookText size={32} />,
     path: "/agendamento"
   },
   {
@@ -36,7 +37,15 @@ const menuItems = [
       "Compartilhe sua experiência com o profissional que realizou o serviço, ajudando outros usuários a fazerem boas escolhas.",
     icon: <Star size={32} />,
     path: "/avaliar"
-  }
+  },
+  {
+    title: "Minha Conta",
+    description:
+      "Para ver suas informações detalhadas do cliente, por favor, acesse sua conta em nosso site. Lá você encontrará todos os seus dados e poderá gerenciar suas preferências facilmente.",
+    icon: <User size={32} />,
+    path: "/conta"
+  },
+  
 ];
 
 const historicoChamados = [
