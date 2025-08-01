@@ -1,12 +1,13 @@
 import React from 'react';
 import './StylesPainel.css';
 
+
 const Dashboard: React.FC = () => {
   const data = {
     valorRecebido: 12500.00,
     valorTotal: 15700.00,
     quantidadeClientes: 128,
-    quantidadeServicos: 15,
+    profissionais: 15,
     projetos: 20,
   };
 
@@ -18,20 +19,21 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard-layout">
       <aside className="sidebar">
-        <h2>Menu</h2>
+        <h2>Painel</h2>
         <ul>
-          <li><strong>Recebido</strong></li>
-          <li><strong>Clientes</strong></li>
-          <li><strong>Serviços</strong></li>
-          <li><strong>Projetos</strong></li>
-          <li><strong>Total</strong></li>
+          <li><strong><a href="#">Recebido</a></strong></li>
+          <li><strong><a href="#">Valor Total</a></strong></li>
+          <li><strong><a href="#">Clientes</a></strong></li>
+          <li><strong><a href="#">Profissionais</a></strong></li>
+          <li><strong><a href="#">Projetos</a></strong></li>
+    
         </ul>
         <button onClick={handleLogout} className="logout-button">Sair</button>
       </aside>
 
       <main className="main-content">
         <div className="dashboard-header">
-          <h2>Dashboard Administrativo</h2>
+          <h2>Dashboard</h2>
         </div>
 
         <div className="summary-cards">
@@ -46,13 +48,13 @@ const Dashboard: React.FC = () => {
             <a href="/detalhes-valor" className="card-link">Ver detalhes</a>
           </div>
           <div className="card clients">
-            <h3>Total de Clientes</h3>
+            <h3>Clientes</h3>
             <p>{data.quantidadeClientes}</p>
             <a href="/detalhes-cliente" className="card-link">Ver detalhes</a>
           </div>
           <div className="card services">
-            <h3>Serviços Disponíveis</h3>
-            <p>{data.quantidadeServicos}</p>
+            <h3>Profissionais</h3>
+            <p>{data.profissionais}</p>
             <a href="/detalhes-servicos" className="card-link">Ver detalhes</a>
           </div>
            <div className="card withdrawal">
