@@ -5,6 +5,7 @@ import {
   Calendar,
   Search,
   Star,
+  User,
   ChevronRight,
   ChevronLeft
 } from "lucide-react";
@@ -36,6 +37,13 @@ const menuItems = [
       "Acompanhe o que os clientes estão dizendo sobre seus serviços e veja sua média de avaliações recebidas.",
     icon: <Star size={32} />,
     path: "/areadoprofissional/minhas-avaliacoes"
+  },
+  {
+    title: "Minha Conta",
+    description:
+      "Para ver suas informações detalhadas do profissional, por favor, acesse sua conta em nosso site. Lá você encontrará todos os seus dados e poderá gerenciar suas preferências facilmente.",
+    icon: <User size={32} />,
+    path: "/conta"
   },
 ];
 

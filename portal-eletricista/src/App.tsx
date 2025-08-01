@@ -17,7 +17,7 @@ import PrivateRoute from "./PrivateRoute";
 import ProfessionalSearch from "./pages/ProfessionalSearch/ProfessionalSearch";
 import ProfessionalProfile from "./pages/perfildoprofissional/ProfessionalProfile";
 import AlterarSenha from "./pages/alterarSenha/AlterarSenha";
-import Agendamento from "./pages/agendamentodocliente/agendamento";
+import Agendamento from "./pages/postagemdoprojeto/PostagemDoProjeto";
 import AvaliacaoProfissional from "./pages/avaliacao/AvaliacaoProfissional";
 import Avaliar from "./pages/avaliar/AvaliarProfissional";
 import Login from "./pages/Login/Login";
@@ -27,6 +27,7 @@ import BuscarTrabalhos from "./pages/buscarTrabalhos/buscarTrabalhos";
 import MinhasAvaliacoes from "./pages/minhasAvaliacoes/minhasAvaliacoes";
 import DetalhesDoChamado from "./pages/detalhesChamado/detalhesChamado";
 import PlanosDeCreditos from "./pages/creditos/creditos";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/creditos", element: <PlanosDeCreditos /> },
+  { path: "/dashboard", element: <Dashboard /> },
 
   {
     path: "/avaliar",

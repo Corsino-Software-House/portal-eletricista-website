@@ -7,10 +7,10 @@ export default function Search() {
   return (
 
     <>
-   
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100vh" }}>
     <Header />
     <ProfessionalSearch />
-     <div style={{height: "10vh" }}>
+     
     <Footer />
     </div>
     </>

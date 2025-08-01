@@ -1,47 +1,169 @@
-Dashboard.css
-.summary-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+/* Layout geral com menu lateral */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
 }
 
-.card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 70px;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ddd;
+}
+
+
+.sidebar ul li strong {
+  color: #fff;
+}
+
+.sidebar ul li strong:hover{
+  color: #050085;
+ 
+}
+
+/* Botão sair no menu */
+.sidebar .logout-button {
+  margin-top: 30px;
+  padding: 12px;
+  background-color: #0147a2;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .logout-button:hover {
+  background-color: #012f6b;
+}
+
+/* Conteúdo principal */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabeçalho */
+.dashboard-header {
+  margin-bottom: 30px;
   text-align: center;
 }
 
+.dashboard-header h2 {
+  font-size: 28px;
+  color: #1a1a1a;
+}
+
+/* Cards */
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  flex: 1 1 250px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 240px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
 .card h3 {
-  color: #555;
-  font-size: 1.2em;
   margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
 }
 
 .card p {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
 }
 
-/* Cores específicas para os cards */
-.card.received p {
-  color: #28a745; /* Verde */
+/* Cores específicas */
+.card.received { background-color: #e9f7ef; border-left: 6px solid #2ecc71; }
+.card.total { background-color: #e8f0fe; border-left: 6px solid #1a73e8; }
+.card.clients { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.services { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+
+.card-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
 }
-.card.pending p {
-  color: #ffc107; /* Amarelo */
+
+.card-link:hover {
+  text-decoration: none;
 }
-.card.total p {
-  color: #007bff; /* Azul */
-}
-.card.withdrawal p {
-  color: #dc3545; /* Vermelho */
-}
-/* Exemplo no Dashboard.css para os novos cards */
-.card.clients p {
-  color: #17a2b8; /* Exemplo de cor azul ciano */
-}
-.card.services p {
-  color: #6c757d; /* Exemplo de cor cinza escuro */
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .summary-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 90%;
+  }
 }

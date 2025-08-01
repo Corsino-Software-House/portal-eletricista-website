@@ -49,3 +49,8 @@
 .booking-form button:hover {
   background-color: #155ec6;
 }
+
+select {
+  padding: 12px;
+  border-radius: 8px;
+}
