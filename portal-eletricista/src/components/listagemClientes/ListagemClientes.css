@@ -1,0 +1,284 @@
+/* Layout geral com menu lateral */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 70px;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ddd;
+}
+
+
+.sidebar ul li strong {
+  color: #fff;
+}
+
+.sidebar ul li strong a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar ul li strong a:hover{
+  color: #050085;
+
+}
+
+/* Botão sair no menu */
+.sidebar .logout-button {
+  margin-top: 30px;
+  padding: 12px;
+  background-color: #0147a2;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .logout-button:hover {
+  background-color: #012f6b;
+}
+
+/* Conteúdo principal */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabeçalho */
+.dashboard-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  font-size: 28px;
+  color: #1a1a1a;
+}
+
+
+/* Cores específicas dos cards do dashboard */
+.card.received { background-color: #e9f7ef; border-left: 6px solid #2ecc71; }
+.card.total { background-color: #e8f0fe; border-left: 6px solid #1a73e8; }
+.card.clients { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.services { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } /* Assumindo que 'withdrawal' aqui é o card de Projetos no dashboard */
+
+
+.card-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: none;
+}
+
+/* Estilos para a Listagem de Projetos */
+.projetos-list-container {
+  width: 100%;
+  max-width: 1200px; /* Limite de largura para o container da lista */
+  margin-top: 20px;
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 300px é o tamanho mínimo, ajusta para preencher */
+  gap: 25px; /* Espaço entre os cards de projeto */
+  justify-content: center; /* Centraliza o grid */
+}
+
+.projeto-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projeto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.projeto-card h3 {
+  font-size: 22px;
+  color: #1a73e8; /* Cor principal */
+  margin-bottom: 12px;
+}
+
+.projeto-card .projeto-descricao {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Permite que a descrição ocupe o espaço necessário */
+}
+
+.projeto-card .projeto-especialidade {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.projeto-card .projeto-creditos-info p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.projeto-card .projeto-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: space-between; /* Alinha os elementos nas extremidades */
+}
+
+.projetos-list-container .creditos-input-group {
+  display: flex;
+  gap: 100px;
+  align-items: center;
+}
+
+.projetos-list-container .creditos-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 90px; /* Largura fixa para o input de créditos */
+  font-size: 14px;
+}
+
+.projetos-list-container .btn-aplicar-creditos {
+  background-color: #28a745; /* Verde para aplicar */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.projetos-list-container .btn-aplicar-creditos:hover {
+  background-color: #218838;
+}
+
+.projetos-list-container .btn-delete {
+  background-color: #dc3545; /* Vermelho para excluir */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projetos-list-container .btn-delete:hover {
+  background-color: #c82333;
+}
+
+.projetos-list-container .no-projects-message {
+  text-align: center;
+  color: #666;
+  font-size: 1.2em;
+  margin-top: 50px;
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .summary-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* .card { /* Mantido comentado para não conflitar com seu CSS */
+  /* max-width: 90%; */
+  /* } */
+
+  .projetos-grid {
+    grid-template-columns: 1fr; /* Uma coluna em telas menores */
+  }
+
+  .projeto-card .projeto-actions {
+    flex-direction: column; /* Botões de ação em coluna em telas menores */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .projetos-list-container .creditos-input-group {
+    width: 100%; /* Ocupa a largura total */
+    justify-content: space-between;
+  }
+
+  .projetos-list-container .creditos-input {
+    width: calc(100% - 80px); /* Ajusta a largura do input */
+  }
+
+  .projetos-list-container .btn-aplicar-creditos {
+    width: 70px; /* Largura fixa para o botão Aplicar */
+  }
+
+  .projetos-list-container .btn-delete {
+    width: 100%; /* Ocupa a largura total */
+  }
+}
