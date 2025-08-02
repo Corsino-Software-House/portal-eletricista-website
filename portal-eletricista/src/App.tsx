@@ -28,6 +28,9 @@ import MinhasAvaliacoes from "./pages/minhasAvaliacoes/minhasAvaliacoes";
 import DetalhesDoChamado from "./pages/detalhesChamado/detalhesChamado";
 import PlanosDeCreditos from "./pages/creditos/creditos";
 import Dashboard from "./pages/dashboard/Dashboard";
+import ListagemProjetos from "./pages/Listagem/ListagemProjetos";
+import ListagemCliente from "./pages/ListagemClientes/ListagemClientes";
+import ListagemProfissional from "./pages/ListagemProfissionais/ListagemProfissionais";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -38,6 +41,9 @@ const router = createBrowserRouter([
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/creditos", element: <PlanosDeCreditos /> },
   { path: "/dashboard", element: <Dashboard /> },
+  { path: "/listagem-projetos", element: <ListagemProjetos /> },
+  { path: "/listagem-clientes", element: <ListagemCliente /> },
+  { path: "/listagem-profissionais", element: <ListagemProfissional /> },
 
   {
     path: "/avaliar",

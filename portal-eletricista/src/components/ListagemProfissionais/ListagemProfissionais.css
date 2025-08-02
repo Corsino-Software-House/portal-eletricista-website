@@ -1,0 +1,96 @@
+/* Layout geral com menu lateral */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 70px;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ddd;
+}
+
+
+.sidebar ul li strong {
+  color: #fff;
+}
+
+.sidebar ul li strong a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar ul li strong a:hover{
+  color: #050085;
+
+}
+
+/* Botão sair no menu */
+.sidebar .logout-button {
+  margin-top: 30px;
+  padding: 12px;
+  background-color: #0147a2;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .logout-button:hover {
+  background-color: #012f6b;
+}
+
+/* Conteúdo principal */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabeçalho */
+.dashboard-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  font-size: 28px;
+  color: #1a1a1a;
+}
+
+
+/* Cores específicas dos cards do dashboard */
+.card.received { background-color: #e9f7ef; border-left: 6px solid #2ecc71; }
+.card.total { background-color: #e8f0fe; border-left: 6px solid #1a73e8; }
+.card.clients { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.services { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
+.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } /* Assumindo que 'withdrawal' aqui é o card de Projet
