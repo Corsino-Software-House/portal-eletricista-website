@@ -1,11 +1,15 @@
-// src/pages/EditarPerfil.tsx
+
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 import { editarPerfilCliente } from '../../services/editarPerfil.service';
 import { editarPerfilProfissional } from '../../services/editarPerfil.service';
+
+import Swal from 'sweetalert2';
+import LoadingSpinner from '../../components/spinner/spinner';
 
 export default function EditarPerfil() {
   const [formData, setFormData] = useState({
@@ -18,6 +22,8 @@ export default function EditarPerfil() {
   const [tipoUsuario, setTipoUsuario] = useState('');
   const [fotoPreview, setFotoPreview] = useState<string | null>(null);
   const [fotoFile, setFotoFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tipo = localStorage.getItem('tipo');
@@ -40,45 +46,63 @@ export default function EditarPerfil() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const idStr = localStorage.getItem('id');
-  const id = idStr ? Number(idStr) : null;
+    const idStr = localStorage.getItem('id');
+    const id = idStr ? Number(idStr) : null;
 
-  if (!id || isNaN(id)) {
-    alert("ID inválido. Faça login novamente.");
-    return;
-  }
-
-  try {
-    const formDataToSend = new FormData();
-
-    formDataToSend.append('id', String(id));
-    formDataToSend.append('nome', formData.nome);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('telefone', formData.telefone);
-
-    if (tipoUsuario === 'profissional') {
-      formDataToSend.append('bio', formData.bio);
+    if (!id || isNaN(id)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'ID inválido',
+        text: 'Faça login novamente.',
+      });
+      return;
     }
 
-    if (fotoFile) {
-      formDataToSend.append('foto', fotoFile); // O nome 'foto' deve ser o esperado pelo backend
-    }
+    setLoading(true);
 
-    if (tipoUsuario === 'profissional') {
-      await editarPerfilProfissional(formDataToSend);
-    } else {
-      await editarPerfilCliente(formDataToSend);
-    }
+    try {
+      const formDataToSend = new FormData();
 
-    alert('Perfil atualizado com sucesso!');
-    localStorage.setItem('email', formData.email);
-  } catch (err) {
-    console.error('Erro ao atualizar perfil:', err);
-    alert('Erro ao atualizar o perfil.');
-  }
-};
+      formDataToSend.append('id', String(id));
+      formDataToSend.append('nome', formData.nome);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('telefone', formData.telefone);
+
+      if (tipoUsuario === 'profissional') {
+        formDataToSend.append('bio', formData.bio);
+      }
+
+      if (fotoFile) {
+        formDataToSend.append('foto', fotoFile);
+      }
+
+      if (tipoUsuario === 'profissional') {
+        await editarPerfilProfissional(formDataToSend);
+      } else {
+        await editarPerfilCliente(formDataToSend);
+      }
+
+      localStorage.setItem('email', formData.email);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucesso',
+        text: 'Perfil atualizado com sucesso!',
+      });
+      navigate('/conta');
+    } catch (err) {
+      console.error('Erro ao atualizar perfil:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Erro ao atualizar o perfil.',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -117,7 +141,21 @@ export default function EditarPerfil() {
                 <textarea name="bio" value={formData.bio} onChange={handleChange} rows={4} />
               </label>
             )}
-            <button type="submit" className="editar-perfil-button">Salvar</button>
+            <button
+              type="submit"
+              className="editar-perfil-button"
+              disabled={loading}
+              style={{ position: "relative" }}
+            >
+              {loading ? (
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                  <LoadingSpinner />
+                  Salvando...
+                </div>
+              ) : (
+                'Salvar'
+              )}
+            </button>
           </form>
         </div>
         <Footer />

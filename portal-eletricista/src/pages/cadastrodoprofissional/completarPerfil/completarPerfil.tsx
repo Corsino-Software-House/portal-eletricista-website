@@ -4,6 +4,8 @@ import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
 import { completarPerfil } from "../../../services/completarPerfil.service";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../../components/spinner/spinner";
+import Swal from "sweetalert2";
 
 import "./style.css";
 
@@ -13,6 +15,7 @@ const ProfileForm: React.FC = () => {
   const [bio, setBio] = useState<string>("");
   const [telefone, setTelefone] = useState<string>("");
   const [especialidade, setEspecialidade] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,19 +51,37 @@ const ProfileForm: React.FC = () => {
     formData.append("foto", image);
 
     try {
+      setLoading(true);
       const resposta = await completarPerfil(formData);
       console.log("Perfil atualizado:", resposta);
-      alert("Perfil atualizado com sucesso!");
+      Swal.fire({
+        title: "Deu certo!",
+        text: "Cadastro completo!",
+        icon: "success",
+      });
       localStorage.clear();
       navigate("/areadoprofissional");
     } catch (erro) {
       console.error("Erro ao atualizar perfil:", erro);
-      alert("Erro ao atualizar o perfil.");
+      Swal.fire({
+        title: "Erro!",
+        text: "O seu registo nao foi concluido, tente novamente!",
+        icon: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100vh" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100vh",
+      }}
+    >
       <Header />
       <form className="profile-form" onSubmit={handleSubmit}>
         <h2>Completar Perfil</h2>
@@ -165,9 +186,7 @@ const ProfileForm: React.FC = () => {
               <option value="Reparação de fugas de água">
                 Reparação de fugas de água
               </option>
-              <option value="Desentupimentos">
-                Desentupimentos
-              </option>
+              <option value="Desentupimentos">Desentupimentos</option>
               <option value="Instalação de torneiras e chuveiros">
                 Instalação de torneiras e chuveiros
               </option>
@@ -215,9 +234,7 @@ const ProfileForm: React.FC = () => {
               <option value="Fugas de água ou risco de inundação">
                 Fugas de água ou risco de inundação
               </option>
-              <option value="Entupimentos graves">
-                Entupimentos graves
-              </option>
+              <option value="Entupimentos graves">Entupimentos graves</option>
               <option value="Problemas com aquecedores">
                 Problemas com aquecedores
               </option>
@@ -225,7 +242,9 @@ const ProfileForm: React.FC = () => {
           </select>
         </div>
 
-        <button type="submit">Salvar</button>
+        <button type="submit" disabled={loading}>
+          {loading ? <LoadingSpinner /> : "Salvar"}
+        </button>
       </form>
       <Footer />
     </div>
