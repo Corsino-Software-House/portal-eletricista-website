@@ -24,7 +24,7 @@ export default function PrivateRoute({ children, tipo }: PrivateRouteProps) {
       tipos.includes('profissional')
         ? '/areadoprofissional/login'
         : tipos.includes('admin')
-        ? '/admin/login'
+        ? '/login'
         : '/areadocliente/login'
 
     return <Navigate to={rotaLogin} replace state={{ from: location }} />

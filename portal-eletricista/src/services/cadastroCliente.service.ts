@@ -21,3 +21,14 @@ export const cadastroCliente = async (nome : string,email : string, senha : stri
     throw error;
   }
 };
+
+export const verClientes = async () => {
+  try {
+    const response = await api.get('/cliente/see-all');
+    return response.data;
+  } catch (error) {
+    const err = error as any;
+    console.error('Erro ao buscar profissionais:', err.response?.data || err.message);
+    throw error;
+  }
+}

@@ -42,12 +42,43 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/creditos", element: <PlanosDeCreditos /> },
-  { path: "/dashboard", element: <Dashboard /> },
-  { path: "/listagem-projetos", element: <ListagemProjetos /> },
-  { path: "/listagem-clientes", element: <ListagemCliente /> },
-  { path: "/listagem-profissionais", element: <ListagemProfissional /> },
-  {path: "/sucesso", element: <SuccessScreen />},
-  {path: "/cancelado", element: <CancelledScreen />},
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute tipo="admin">
+        <Dashboard />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/listagem-projetos",
+    element: (
+      <PrivateRoute tipo="admin">
+        <ListagemProjetos />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: "/listagem-clientes",
+    element: (
+      <PrivateRoute tipo="admin">
+        <ListagemCliente />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: "/listagem-profissionais",
+    element: (
+      <PrivateRoute tipo="admin">
+        <ListagemProfissional />
+      </PrivateRoute>
+    ),
+  },
+  { path: "/sucesso", element: <SuccessScreen /> },
+  { path: "/cancelado", element: <CancelledScreen /> },
 
   {
     path: "/avaliar",
@@ -125,7 +156,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/areadoprofissional/detalhes-chamado",
+    path: "/areadoprofissional/detalhes-chamado/:id",
     element: (
       <PrivateRoute tipo="profissional">
         <DetalhesDoChamado />

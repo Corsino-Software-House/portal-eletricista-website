@@ -45,3 +45,16 @@ export const verProfissionalPorId = async (id: number) => {
     throw error;
   }
 };
+
+export const deletarProfissional = async (id: number) => {
+  try {
+    const response = await api.delete(`/profissional/delete/${id}`);
+    return response.data;
+  } catch (error) {
+    const err = error as any;
+    console.error('Erro ao deletar profissional:', err.response?.data || err.message);
+    throw error;
+  }
+}
+
+
