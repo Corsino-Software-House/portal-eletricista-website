@@ -4,14 +4,14 @@ const api = axios.create({
   baseURL: 'https://portal-eletricista-api.onrender.com/',
 });
 
-export interface NovaRequest {
+type CreateRequestData = {
   clienteId: number;
   titulo: string;
   descricao: string;
   cidade: string;
   bairro: string;
   especialidade: string;
-}
+};
 
 export interface Request {
   id: number;
@@ -24,7 +24,7 @@ export interface Request {
   concluido: boolean;
 }
 
-export const criarRequest = async (data: NovaRequest) => {
+export const criarRequest = async (data: CreateRequestData) => {
   try {
     const response = await api.post('/requests/create', data);
     return response.data;

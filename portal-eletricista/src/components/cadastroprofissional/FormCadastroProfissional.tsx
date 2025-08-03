@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { cadastroProfissional } from "../../services/cadastroProfissional.service";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../components/spinner/spinner"; // import do spinner
 
 type FormData = {
   nome: string;
@@ -21,9 +22,11 @@ export default function CadastroProfissional() {
   } = useForm<FormData>();
 
   const [mensagem, setMensagem] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
+    setLoading(true);
     try {
       const resposta = await cadastroProfissional(
         data.nome,
@@ -34,12 +37,13 @@ export default function CadastroProfissional() {
       );
       localStorage.setItem("profissionalId", String(resposta.id));
       setMensagem("Profissional cadastrado com sucesso!");
-      console.log(resposta);
       reset(); // limpa os campos
       navigate("/areadoprofissional/completar-perfil");
     } catch (erro) {
       setMensagem("Erro ao cadastrar. Verifique os dados.");
       console.error(erro);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,7 +107,10 @@ export default function CadastroProfissional() {
         {errors.bairro && <p className="erro">{errors.bairro.message}</p>}
       </div>
 
-      <button type="submit">Cadastrar-se</button>
+      <button type="submit" disabled={loading}>
+        {loading ? <LoadingSpinner /> : "Cadastrar-se"}
+      </button>
+
       {mensagem && <p className="mensagem">{mensagem}</p>}
     </form>
   );

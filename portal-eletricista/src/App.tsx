@@ -31,6 +31,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ListagemProjetos from "./pages/Listagem/ListagemProjetos";
 import ListagemCliente from "./pages/ListagemClientes/ListagemClientes";
 import ListagemProfissional from "./pages/ListagemProfissionais/ListagemProfissionais";
+import SuccessScreen from "./pages/sucesso/SucessoPage";
+import CancelledScreen from "./pages/cancelado/Cancelado";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -44,6 +46,8 @@ const router = createBrowserRouter([
   { path: "/listagem-projetos", element: <ListagemProjetos /> },
   { path: "/listagem-clientes", element: <ListagemCliente /> },
   { path: "/listagem-profissionais", element: <ListagemProfissional /> },
+  {path: "/sucesso", element: <SuccessScreen />},
+  {path: "/cancelado", element: <CancelledScreen />},
 
   {
     path: "/avaliar",

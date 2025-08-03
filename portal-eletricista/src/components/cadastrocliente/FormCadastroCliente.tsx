@@ -3,6 +3,7 @@ import "./styles.css";
 import { cadastroCliente } from "../../services/cadastroCliente.service";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../components/spinner/spinner";
 
 type FormData = {
   nome: string;
@@ -19,19 +20,22 @@ export default function CadastroCliente() {
   } = useForm<FormData>();
 
   const [mensagem, setMensagem] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
+    setLoading(true);
     try {
       const resposta = await cadastroCliente(data.nome, data.email, data.senha);
       localStorage.setItem("clienteId", String(resposta.id));
       setMensagem("Cliente cadastrado com sucesso!");
-      console.log(resposta);
       reset();
       navigate("/areadocliente/completar-perfil");
     } catch (erro) {
       setMensagem("Erro ao cadastrar. Verifique os dados.");
       console.error(erro);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,7 +84,9 @@ export default function CadastroCliente() {
         {errors.senha && <p className="erro">{errors.senha.message}</p>}
       </div>
 
-      <button type="submit">Cadastrar-se</button>
+      <button type="submit" disabled={loading}>
+        {loading ? <LoadingSpinner /> : "Cadastrar-se"}
+      </button>
 
       {mensagem && <p className="mensagem">{mensagem}</p>}
     </form>
