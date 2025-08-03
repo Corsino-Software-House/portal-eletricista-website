@@ -65,7 +65,7 @@ export default function BuscarTrabalhos() {
                   <p><strong>Local:</strong> {trabalho.bairro}, {trabalho.cidade}</p>
                   <button
                     onClick={() =>
-                      navigate("/areadoprofissional/detalhes-chamado", { state: trabalho })
+                      navigate(`/areadoprofissional/detalhes-chamado/${trabalho.id}`, { state: trabalho })
                     }
                   >
                     Candidatar-se

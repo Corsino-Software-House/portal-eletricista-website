@@ -15,7 +15,7 @@ export default function PlanosDeCreditos() {
   ];
 
   const profissionalId = Number(localStorage.getItem("id"));
-  const tipoUsuario = localStorage.getItem("tipoUsuario");
+  const tipoUsuario = localStorage.getItem("tipo");
 
   const [loadingPlano, setLoadingPlano] = useState<string | null>(null);
   const [mensagem, setMensagem] = useState<{ tipo: "erro" | "sucesso"; texto: string } | null>(null);

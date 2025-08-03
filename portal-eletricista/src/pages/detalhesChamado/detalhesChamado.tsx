@@ -1,55 +1,118 @@
-
 import "./styles.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import { usarCredito } from "../../services/usarCreditos.service";
+import { buscarRequestPorId } from "../../services/request.service";
+import { buscarAssinaturaAtiva } from "../../services/subscription.service";
+import { useNavigate } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function DetalhesDoChamado() {
-  const trabalho = {
-    titulo: "Troca de disjuntores",
-    descricao: "Trocar 3 disjuntores queimados no quadro principal. É necessário levar ferramentas básicas.",
-    especialidade: "Residencial",
-    local: "Centro",
-    valor: 200,
-    usuario: "João da Silva",
-    data: "10/08/2025",
-    horario: "14:00"
-  };
+  const { id } = useParams(); 
+  const [trabalho, setTrabalho] = useState<any>(null);
+  const [carregando, setCarregando] = useState(true);
+  const navigate = useNavigate();
+
+  const profissionalId = Number(localStorage.getItem("id"));
+  const subscriptionId = Number(id); 
+
+  useEffect(() => {
+    async function fetchTrabalho() {
+      try {
+        const data = await buscarRequestPorId(subscriptionId);
+        setTrabalho(data);
+      } catch (err) {
+        console.error("Erro ao buscar chamado:", err);
+      } finally {
+        setCarregando(false);
+      }
+    }
+    fetchTrabalho();
+  }, [subscriptionId]);
+
+  const handleCandidatar = async () => {
+  if (!trabalho) return;
+  const assinaturaAtiva = await buscarAssinaturaAtiva(profissionalId);
+  const assinatura = assinaturaAtiva[0];
+
+  try {
+    await usarCredito({
+      requestId: trabalho.id,
+      subscriptionId: assinatura.id,
+      profissionalId,
+      quantidade: trabalho.creditos,
+    });
+
+    Swal.fire({
+      title: "Candidatura enviada com sucesso!",
+      html: `
+        <p>Entre em contato com o cliente:</p>
+        <strong>${trabalho.cliente.telefone}</strong>
+      `,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    navigate("/areadoprofissional/menu");
+  } catch (err) {
+    Swal.fire({
+      title: "Erro ao se candidatar",
+      text: "Não foi possível usar o crédito. Tente novamente.",
+      icon: "error",
+      confirmButtonText: "Fechar",
+    });
+  }
+};
+
+  if (carregando) {
+    return <div className="loading">Carregando...</div>;
+  }
+
+  if (!trabalho) {
+    return <div className="error">Chamado não encontrado.</div>;
+  }
 
   return (
     <>
-    <Header />
-    <div className="detalhes-container">
-      <div className="detalhes-card">
-        <h1>{trabalho.titulo}</h1>
-        <p className="descricao">{trabalho.descricao}</p>
+      <Header />
+      <div className="detalhes-container">
+        <div className="detalhes-card">
+          <h1>{trabalho.titulo}</h1>
+          <p className="descricao">{trabalho.descricao}</p>
 
-        <div className="info-grid">
-          <div>
-            <strong>Especialidade:</strong>
-            <p>{trabalho.especialidade}</p>
+          <div className="info-grid">
+            <div>
+              <strong>Especialidade:</strong>
+              <p>{trabalho.especialidade}</p>
+            </div>
+            <div>
+              <strong>Local:</strong>
+              <p>
+                {trabalho.cidade}, {trabalho.bairro}
+              </p>
+            </div>
+            <div>
+              <strong>Créditos a gastar:</strong>
+              <p>{trabalho.creditos}</p>
+            </div>
+            <div>
+              <strong>Criado em:</strong>
+              <p>{trabalho.criadoEm}</p>
+            </div>
+            <div>
+              <strong>Publicado por:</strong>
+              <p>{trabalho.cliente.nome}</p>
+            </div>
           </div>
-          <div>
-            <strong>Local:</strong>
-            <p>{trabalho.local}</p>
-          </div>
-          <div>
-            <strong>Valor:</strong>
-            <p>R$ {trabalho.valor}</p>
-          </div>
-          <div>
-            <strong>Data:</strong>
-            <p>{trabalho.data} às {trabalho.horario}</p>
-          </div>
-          <div>
-            <strong>Publicado por:</strong>
-            <p>{trabalho.usuario}</p>
-          </div>
+
+          <button className="btn-candidatar" onClick={handleCandidatar}>
+            Candidatar-se
+          </button>
         </div>
-
-        <button className="btn-candidatar">Candidatar-se</button>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 }

@@ -56,4 +56,9 @@
   font-size: 16px;
   text-align: center;
 }
-
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  display: block;
+}

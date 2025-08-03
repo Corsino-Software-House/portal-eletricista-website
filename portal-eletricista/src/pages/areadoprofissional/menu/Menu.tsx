@@ -1,15 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Calendar,
   Search,
   Star,
   User,
+  DollarSign,
 } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles.css";
 import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
+import { CreditsoProfissional } from "../../../services/subscription.service";
 
 const menuItems = [
   {
@@ -51,11 +54,33 @@ const MenuCard = ({ title, description, icon, path }: any) => (
 );
 
 const Dashboard = () => {
+  const [creditos, setCreditos] = useState<number | null>(null);
+
+  useEffect(() => {
+    const profissionalId = Number(localStorage.getItem("id"));
+    if (profissionalId) {
+      CreditsoProfissional(profissionalId)
+        .then((res) => {
+          setCreditos(res.creditosRestantes);
+        })
+        .catch((err) => {
+          console.error("Erro ao buscar créditos:", err);
+        });
+    }
+  }, []);
+
   return (
     <>
       <Header />
       <div className="dashboard-container">
         <h2 className="menu-title">Menu</h2>
+
+        {creditos !== null && (
+          <div className="creditos-box">
+            <DollarSign size={20} /> Créditos disponíveis: <strong>{creditos}</strong>
+          </div>
+        )}
+
         <div className="menu-grid">
           {menuItems.map((item, idx) => (
             <MenuCard key={idx} {...item} />
