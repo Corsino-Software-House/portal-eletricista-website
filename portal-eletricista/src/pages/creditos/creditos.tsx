@@ -2,9 +2,9 @@ import Swal from "sweetalert2";
 import "./styles.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import axios from "axios";
 import { useState } from "react";
 import LoadingSpinner from "../../components/spinner/spinner";
+import { criarPedidoDePlano } from "../../services/paypal.service";
 
 export default function PlanosDeCreditos() {
   const planos = [
@@ -34,13 +34,13 @@ export default function PlanosDeCreditos() {
       setMensagem(null);
       setLoadingPlano(plano.nome);
 
-      const res = await axios.post("https://portal-eletricista-api.onrender.com/paypal/create-order", {
+      const res = await criarPedidoDePlano({
         value: plano.preco.toFixed(2),
         profissionalId,
         pacote: plano.nome,
       });
 
-      const approvalLink = res.data.links.find((link: any) => link.rel === "approve")?.href;
+      const approvalLink = res.links.find((link: any) => link.rel === "approve")?.href;
 
       if (!approvalLink) {
         Swal.fire({

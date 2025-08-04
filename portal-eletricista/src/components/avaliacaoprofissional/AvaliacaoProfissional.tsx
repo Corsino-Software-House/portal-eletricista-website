@@ -74,7 +74,11 @@ const ProfessionalCard: React.FC = () => {
               alt={`Foto de ${profissional.nome}`}
             />
           ) : (
-            <div className="avatar-placeholder" />
+            <img
+              src={profissional?.fotoUrl || "/user.png"}
+              alt={`Foto de ${profissional?.nome}`}
+              onError={(e) => (e.currentTarget.src = "/user.png")}
+            />
           )}
         </div>
         <div className="info">

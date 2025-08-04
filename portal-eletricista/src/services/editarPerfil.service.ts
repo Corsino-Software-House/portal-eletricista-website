@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://portal-eletricista-api.onrender.com',
+  baseURL: 'https://api.techmanlight.pt/',
 });
 
 export const editarPerfilProfissional = (data: FormData) => {

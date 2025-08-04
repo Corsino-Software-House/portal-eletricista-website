@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://portal-eletricista-api.onrender.com', // Altere se necessário
+  baseURL: 'https://api.techmanlight.pt/', // Altere se necessário
 });
 
 export const usarCredito = async (data: {
