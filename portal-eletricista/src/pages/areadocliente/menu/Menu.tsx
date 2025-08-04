@@ -52,27 +52,6 @@ const menuItems = [
   },
 ];
 
-const historicoChamados = [
-  {
-    title: "Concerto de tomada",
-    description:
-      "Reparo realizado em tomada com mau contato, incluindo substituição do espelho e verificação da fiação interna.",
-    link: "/avaliacao",
-  },
-  {
-    title: "Troca de Disjuntor",
-    description:
-      "Substituição de disjuntor danificado por um novo, compatível com a carga elétrica do circuito, garantindo mais segurança.",
-    link: "/avaliacao",
-  },
-  {
-    title: "Concerto de fio descapado",
-    description:
-      "Isolamento e reparo de fios expostos em circuito interno, prevenindo curtos-circuitos e possíveis choques elétricos.",
-    link: "/avaliacao",
-  },
-];
-
 const MenuCard = ({ title, description, icon, path }: any) => (
   <Link to={path} className="card menu-card">
     <div className="icon">{icon}</div>
