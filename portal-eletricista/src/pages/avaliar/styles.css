@@ -58,3 +58,16 @@
   min-width: 100px;
   text-align: center;
 }
+.barra-de-pesquisa {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.barra-de-pesquisa input {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
