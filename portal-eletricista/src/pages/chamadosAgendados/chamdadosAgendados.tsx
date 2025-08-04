@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./styles.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
@@ -45,7 +45,8 @@ export default function ChamadosAgendados() {
         setLoading(false);
       })
       .catch((err) => {
-        setError("Erro ao carregar chamados.");
+        setError("Erro ao carregar chamados.",);
+        console.error(err)
         setLoading(false);
       });
   }, []);
