@@ -12,7 +12,9 @@ export default function Header() {
 
   return (
     <header className="background">
+      <a href="https://techmanlight.pt/">
       <img src="/logo1.jpg" alt="logo" className="logo" />
+      </a>
 
       {/* Botão Hambúrguer (só aparece em telas pequenas) */}
       <button className="menu-toggle" onClick={toggleMenu}>

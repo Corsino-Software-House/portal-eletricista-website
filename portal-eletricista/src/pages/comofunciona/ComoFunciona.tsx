@@ -67,6 +67,15 @@ export default function ComoFunciona() {
               <h3>✔️ Controle e Segurança</h3>
               <p>Acompanhe todo o processo pela nossa plataforma</p>
             </div>
+            <div className="card">
+              <h3>✔️ Nossos Diferenciais Exclusivos</h3>
+              <p> Garantia Técnica Integrada Serviço com garantia de 7 a 14 dias após conclusão.</p>
+            </div>
+            <div className="card">
+              <h3>✔️ Mais garantias</h3>
+              <p> A plataforma acompanha o cliente até o fim do processo.<br/>
+               Resultado: confiança real + redução de conflitos.</p>
+            </div>
           </div>
         </section>
 

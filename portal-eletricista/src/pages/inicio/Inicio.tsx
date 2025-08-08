@@ -14,7 +14,8 @@ export default function Inicio() {
       <div>
         <img className="banner" src={banner} alt="Banner" />
       </div>
-      <h1 className="texth1">Chamados mais Pedidos</h1>
+      <p className="texth2">A Tech Manlight está presente em lisboa, Setúbal, Porto e Algarve</p>
+      <h1 className="texth1">Serviços mais Procurados</h1>
       <Chamados />
 
       <Depoimentos />
