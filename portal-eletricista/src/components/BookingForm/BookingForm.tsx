@@ -1,18 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BookingForm.css';
 import { criarRequest } from '../../services/request.service';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 
 const BookingForm: React.FC = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    nome: '',
+    nome: '',           
     descricao: '',
     cidade: '',
     distrito: '',
     especialidade: '',
   });
-  const navigate = useNavigate();
+
+  // Lista completa de especialidades (deve bater com os valores do select)
+  const todasEspecialidades = [
+    "Instalação elétrica completa (obra nova ou remodelação)",
+    "Substituição de quadros elétricos",
+    "Instalação de disjuntores e diferencial",
+    "Passagem e substituição de cabos",
+    "Tomadas e interruptores",
+    "Iluminação interior e exterior",
+    "Ventoinhas de teto e exaustores",
+    "Manutenção preventiva de sistemas elétricos",
+    "Certificação elétrica",
+    "Inspeções técnicas e diagnósticos de falha",
+    "Instalação e configuração de assistentes virtuais",
+    "Tomadas e interruptores inteligentes",
+    "Automatização de iluminação e persianas",
+    "Instalação de câmeras de vigilância (CCTV)",
+    "Instalação de sensores de segurança",
+    "Controle remoto via app",
+    "Integração de sistemas com domótica",
+    "Consultoria e otimização com smart meter",
+    "Reparação de fugas de água",
+    "Desentupimentos",
+    "Instalação de torneiras e chuveiros",
+    "Substituição de loiças sanitárias",
+    "Instalação de máquinas de lavar",
+    "Reparação e substituição de autoclismos",
+    "Montagem de sistemas de filtragem de água",
+    "Canalizações completas para obras",
+    "Verificação e substituição de esgotos",
+    "Certificações e ensaios hidráulicos",
+    "Reparos simples elétricos e hidráulicos",
+    "Manutenção periódica de sistemas",
+    "Pequenas remodelações de cozinha e WC",
+    "Instalação de suportes e luminárias",
+    "Falta de energia elétrica",
+    "Disjuntor queimado / quadro disparando",
+    "Fugas de água ou risco de inundação",
+    "Entupimentos graves",
+    "Problemas com aquecedores"
+  ];
+
+  // Normaliza strings para comparação
+  const normalizar = (texto: string) => texto.trim().toLowerCase();
+
+  // Busca título do projeto e define especialidade se bater
+  useEffect(() => {
+    const tituloProjeto = localStorage.getItem('tituloProjeto') || '';
+    const match = todasEspecialidades.find(opt => normalizar(opt) === normalizar(tituloProjeto));
+
+    setFormData(prev => ({
+      ...prev,
+      nome: tituloProjeto,
+      especialidade: match || ''
+    }));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,22 +84,24 @@ const BookingForm: React.FC = () => {
         titulo: formData.nome,
         descricao: formData.descricao,
         cidade: formData.cidade,
-        bairro: formData.bairro,
+        bairro: formData.distrito,
         especialidade: formData.especialidade,
       });
 
-       Swal.fire({
-              title: "Sucesso!",
-              text: "Projeto publicado com sucesso!",
-              icon: "success",
-            });
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Projeto publicado com sucesso!",
+        icon: "success",
+      });
+
       setFormData({
         nome: '',
         descricao: '',
         cidade: '',
-        bairro: '',
+        distrito: '',
         especialidade: '',
       });
+      localStorage.removeItem('tituloProjeto');
       navigate('/areadocliente');
     } catch (error) {
       console.error("Erro ao criar o projeto:", error);
@@ -60,21 +119,44 @@ const BookingForm: React.FC = () => {
       <form className="booking-form" onSubmit={handleSubmit}>
         <label>
           Título do Projeto:
-          <input type="text" name="nome" value={formData.nome} onChange={handleChange} required />
+          <input
+            type="text"
+            name="nome"
+            value={formData.nome}
+            onChange={handleChange}
+            required
+          />
         </label>
         <label>
           Descrição:
-          <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} required />
+          <input
+            type="text"
+            name="descricao"
+            value={formData.descricao}
+            onChange={handleChange}
+            required
+          />
         </label>
         <label>
           Cidade:
-          <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
+          <input
+            type="text"
+            name="cidade"
+            value={formData.cidade}
+            onChange={handleChange}
+            required
+          />
         </label>
         <label>
           Distrito:
-          <input type="text" name="bairro" value={formData.distrito} onChange={handleChange} required />
+          <input
+            type="text"
+            name="distrito"
+            value={formData.distrito}
+            onChange={handleChange}
+            required
+          />
         </label>
-
         <label>
           Especialidade:
           <select

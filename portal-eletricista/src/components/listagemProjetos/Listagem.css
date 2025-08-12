@@ -93,7 +93,7 @@
 .card.total { background-color: #e8f0fe; border-left: 6px solid #1a73e8; }
 .card.clients { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
 .card.services { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
-.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } /* Assumindo que 'withdrawal' aqui é o card de Projetos no dashboard */
+.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } 
 
 
 .card-link {

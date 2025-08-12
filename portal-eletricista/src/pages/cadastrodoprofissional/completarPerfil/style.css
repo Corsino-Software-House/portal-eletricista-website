@@ -41,10 +41,27 @@
   border-radius: 8px;
   margin-bottom: 8px;
 }
+.preview-cartao {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
 
 .placeholder {
   width: 150px;
   height: 150px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.placeholder-cartao {
+  width: 150px;
+  height: 100px;
   background: #f0f0f0;
   display: flex;
   align-items: center;

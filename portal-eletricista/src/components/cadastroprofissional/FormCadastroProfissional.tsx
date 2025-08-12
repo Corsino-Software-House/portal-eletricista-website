@@ -99,7 +99,7 @@ export default function CadastroProfissional() {
       </div>
 
       <div className="form-group">
-        <label htmlFor="bairro">Bairro:</label>
+        <label htmlFor="bairro">Distrito:</label>
         <input
           id="bairro"
           {...register("bairro", { required: "Bairro é obrigatório" })}

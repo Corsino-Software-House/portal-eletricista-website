@@ -93,7 +93,7 @@
 .card.total { background-color: #e8f0fe; border-left: 6px solid #1a73e8; }
 .card.clients { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
 .card.services { background-color: #f4f6f7; border-left: 6px solid #1a73e8; }
-.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } /* Assumindo que 'withdrawal' aqui é o card de Projetos no dashboard */
+.card.withdrawal { background-color: #f4f6f7; border-left: 6px solid #1a73e8; } 
 
 
 .card-link {
@@ -281,4 +281,13 @@
   .projetos-list-container .btn-delete {
     width: 100%; /* Ocupa a largura total */
   }
+}
+.input-busca {
+  padding: 8px 12px;
+  margin: 10px 0 20px 0;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }

@@ -1,35 +1,61 @@
-import React, { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import React, { useState, type ChangeEvent } from "react";
+import { useForm, Controller } from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
 import { completarPerfil } from "../../../services/completarPerfil.service";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../../components/spinner/spinner";
 import Swal from "sweetalert2";
-
 import "./style.css";
 
-const ProfileForm: React.FC = () => {
-  const [image, setImage] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [bio, setBio] = useState<string>("");
-  const [telefone, setTelefone] = useState<string>("");
-  const [especialidade, setEspecialidade] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+type FormData = {
+  bio: string;
+  telefone: string;
+  especialidade: string;
+  fotoPerfil: FileList;    // campo único para foto perfil
+  ccFrente: FileList;      // frente documento
+  ccVerso: FileList;       // verso documento
+};
 
+const ProfileForm: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      bio: "",
+      telefone: "",
+      especialidade: "",
+    },
+  });
+
+  const [preview, setPreview] = useState<string | null>(null);
+  const [previewFrente, setPreviewFrente] = useState<string | null>(null);
+  const [previewVerso, setPreviewVerso] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const validateFileSize = (files: FileList) => {
+    if (!files || files.length === 0) return "Este campo é obrigatório";
+    const file = files[0];
+    return file.size <= 10 * 1024 * 1024 || "A imagem deve ter até 10MB";
+  };
+
+  const handleImagePreview = (
+    e: ChangeEvent<HTMLInputElement>,
+    setPreviewFn: React.Dispatch<React.SetStateAction<string | null>>
+  ) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
+      setPreviewFn(URL.createObjectURL(file));
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: FormData) => {
     const idStr = localStorage.getItem("profissionalId");
     const id = idStr ? Number(idStr) : null;
 
@@ -38,18 +64,22 @@ const ProfileForm: React.FC = () => {
       return;
     }
 
-    if (!image) {
-      alert("Selecione uma imagem.");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("id", String(id));
-    formData.append("bio", bio);
-    formData.append("telefone", telefone);
-    formData.append("especialidade", especialidade);
-    formData.append("foto", image);
+    formData.append("bio", data.bio);
+    formData.append("telefone", data.telefone);
+    formData.append("especialidade", data.especialidade);
 
+    // Foto de perfil (campo único)
+    formData.append("fotoPerfil", data.fotoPerfil[0]);
+
+    // Documentos (array com dois arquivos)
+    formData.append("documentos", data.ccFrente[0]);
+    formData.append("documentos", data.ccVerso[0]);
+
+    for (const pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}
     try {
       setLoading(true);
       const resposta = await completarPerfil(formData);
@@ -65,7 +95,7 @@ const ProfileForm: React.FC = () => {
       console.error("Erro ao atualizar perfil:", erro);
       Swal.fire({
         title: "Erro!",
-        text: "O seu registo nao foi concluido, tente novamente!",
+        text: "O seu registo não foi concluído, tente novamente!",
         icon: "error",
       });
     } finally {
@@ -83,47 +113,113 @@ const ProfileForm: React.FC = () => {
       }}
     >
       <Header />
-      <form className="profile-form" onSubmit={handleSubmit}>
+      <form className="profile-form" onSubmit={handleSubmit(onSubmit)}>
         <h2>Completar Perfil</h2>
 
+        {/* FOTO PERFIL */}
         <div className="image-upload">
+          <label>Foto de Perfil</label>
           {preview ? (
             <img src={preview} alt="Preview" className="preview" />
           ) : (
             <div className="placeholder">Prévia</div>
           )}
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <input
+            type="file"
+            accept="image/*"
+            {...register("fotoPerfil", { validate: validateFileSize })}
+            onChange={(e) => {
+              handleImagePreview(e, setPreview);
+              (register("fotoPerfil").onChange as any)(e);
+            }}
+          />
+          {errors.fotoPerfil && (
+            <p className="error">{errors.fotoPerfil.message?.toString()}</p>
+          )}
         </div>
 
+        {/* CARTÃO DE CIDADÃO FRENTE */}
+        <div className="image-upload">
+          <label>Cartão de Cidadão - Frente</label>
+          {previewFrente ? (
+            <img src={previewFrente} alt="CC Frente" className="preview-cartao" />
+          ) : (
+            <div className="placeholder-cartao">Prévia</div>
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            {...register("ccFrente", { validate: validateFileSize })}
+            onChange={(e) => {
+              handleImagePreview(e, setPreviewFrente);
+              (register("ccFrente").onChange as any)(e);
+            }}
+          />
+          {errors.ccFrente && (
+            <p className="error">{errors.ccFrente.message?.toString()}</p>
+          )}
+        </div>
+
+        {/* CARTÃO DE CIDADÃO VERSO */}
+        <div className="image-upload">
+          <label>Cartão de Cidadão - Verso</label>
+          {previewVerso ? (
+            <img src={previewVerso} alt="CC Verso" className="preview-cartao" />
+          ) : (
+            <div className="placeholder-cartao">Prévia</div>
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            {...register("ccVerso", { validate: validateFileSize })}
+            onChange={(e) => {
+              handleImagePreview(e, setPreviewVerso);
+              (register("ccVerso").onChange as any)(e);
+            }}
+          />
+          {errors.ccVerso && (
+            <p className="error">{errors.ccVerso.message?.toString()}</p>
+          )}
+        </div>
+
+        {/* BIO */}
         <div className="form-group">
           <label htmlFor="bio">Bio:</label>
-          <textarea
-            id="bio"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            placeholder="Digite algo sobre você..."
-          />
+          <textarea id="bio" placeholder="Digite algo sobre você..." {...register("bio")} />
         </div>
 
+        {/* TELEFONE */}
         <div className="form-group">
           <label htmlFor="telefone">Telefone:</label>
-          <input
-            id="telefone"
-            type="tel"
-            value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
-            placeholder="Digite seu telefone..."
+          <Controller
+            name="telefone"
+            control={control}
+            rules={{
+              required: "Telefone é obrigatório",
+              validate: (value) => (value && value.length >= 10) || "Telefone inválido",
+            }}
+            render={({ field }) => (
+              <PhoneInput
+                {...field}
+                defaultCountry="PT"
+                id="telefone"
+                placeholder="Digite seu telefone..."
+                international
+                countryCallingCodeEditable={false}
+              />
+            )}
           />
+          {errors.telefone && <p className="error">{errors.telefone.message?.toString()}</p>}
         </div>
 
+        {/* ESPECIALIDADE */}
         <div className="form-group">
           <label htmlFor="especialidade">Especialidade:</label>
           <select
             id="especialidade"
-            value={especialidade}
-            onChange={(e) => setEspecialidade(e.target.value)}
+            {...register("especialidade", { required: "Selecione uma especialidade" })}
           >
-            <option value="">Selecione uma especialidade</option>
+           <option value="">Selecione uma especialidade</option>
             <optgroup label="Elétrica">
               <option value="Instalação elétrica completa (obra nova ou remodelação)">
                 Instalação elétrica completa (obra nova ou remodelação)
@@ -240,6 +336,9 @@ const ProfileForm: React.FC = () => {
               </option>
             </optgroup>
           </select>
+          {errors.especialidade && (
+            <p className="error">{errors.especialidade.message?.toString()}</p>
+          )}
         </div>
 
         <button type="submit" disabled={loading}>

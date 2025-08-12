@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
 import { completarPerfilCliente } from "../../../services/completarPerfil.service";
@@ -17,10 +19,15 @@ const ProfileForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      telefone: "",
+    },
+  });
   const [preview, setPreview] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false); // ✅ Estado para o spinner
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
@@ -32,14 +39,15 @@ const ProfileForm: React.FC = () => {
       return;
     }
 
-    const image = data.foto[0];
     const formData = new FormData();
     formData.append("id", String(id));
     formData.append("telefone", data.telefone);
-    formData.append("foto", image);
+    if (data.foto && data.foto.length > 0) {
+      formData.append("foto", data.foto[0]);
+    }
 
     try {
-      setLoading(true); // ✅ Ativa o spinner
+      setLoading(true);
       const resposta = await completarPerfilCliente(formData);
       console.log("Perfil atualizado:", resposta);
       Swal.fire({
@@ -66,6 +74,13 @@ const ProfileForm: React.FC = () => {
     if (file) {
       setPreview(URL.createObjectURL(file));
     }
+  };
+
+  // Validação do tamanho da foto: max 10MB
+  const validateFileSize = (files: FileList) => {
+    if (!files || files.length === 0) return true; // arquivo opcional
+    const file = files[0];
+    return file.size <= 10 * 1024 * 1024 || "A imagem deve ter até 10MB";
   };
 
   return (
@@ -96,31 +111,40 @@ const ProfileForm: React.FC = () => {
             <input
               type="file"
               accept="image/*"
-              {...register("foto", { required: "Selecione uma imagem" })}
+              {...register("foto", {
+                validate: validateFileSize,
+              })}
               onChange={(e) => {
                 handleImagePreview(e);
                 (register("foto").onChange as any)(e);
               }}
             />
-            {errors.foto && <p className="error">{errors.foto.message}</p>}
+            {errors.foto && <p className="error">{errors.foto.message?.toString()}</p>}
           </div>
 
           <div className="form-group">
             <label htmlFor="telefone">Telefone:</label>
-            <input
-              id="telefone"
-              type="tel"
-              placeholder="Digite seu telefone..."
-              {...register("telefone", {
+            <Controller
+              name="telefone"
+              control={control}
+              rules={{
                 required: "Telefone é obrigatório",
-                pattern: {
-                  value: /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/,
-                  message: "Formato de telefone inválido",
-                },
-              })}
+                validate: (value) =>
+                  (value && value.length >= 10) || "Telefone inválido",
+              }}
+              render={({ field }) => (
+                <PhoneInput
+                  {...field}
+                  defaultCountry="PT"
+                  id="telefone"
+                  placeholder="Digite seu telefone..."
+                  international
+                  countryCallingCodeEditable={false}
+                />
+              )}
             />
             {errors.telefone && (
-              <p className="error">{errors.telefone.message}</p>
+              <p className="error">{errors.telefone.message?.toString()}</p>
             )}
           </div>
 

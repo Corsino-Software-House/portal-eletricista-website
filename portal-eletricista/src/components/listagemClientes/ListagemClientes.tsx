@@ -3,17 +3,17 @@ import './ListagemClientes.css';
 import { useNavigate } from 'react-router-dom';
 import { verClientes } from '../../services/cadastroCliente.service';
 
-// Interface local para o tipo Cliente
 interface Cliente {
   id: string;
   nome: string;
   email: string;
   telefone: string;
-  criadoEm: string; // ou dataCadastro, dependendo do retorno da API
+  criadoEm: string;
 }
 
 const ListagemClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
+  const [filtro, setFiltro] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +35,11 @@ const ListagemClientes: React.FC = () => {
     navigate('/login');
   };
 
+  // Filtra clientes pelo nome ignorando maiúsculas/minúsculas
+  const clientesFiltrados = clientes.filter(cliente =>
+    cliente.nome.toLowerCase().includes(filtro.toLowerCase())
+  );
+
   return (
     <div className="dashboard-layout">
       <aside className="sidebar">
@@ -52,14 +57,23 @@ const ListagemClientes: React.FC = () => {
       <main className="main-content">
         <div className="dashboard-header">
           <h2>Listagem de Clientes</h2>
+
+          {/* Input para busca */}
+          <input
+            type="text"
+            placeholder="Buscar cliente pelo nome..."
+            value={filtro}
+            onChange={e => setFiltro(e.target.value)}
+            className="input-busca"
+          />
         </div>
 
         <div className="projetos-list-container">
-          {clientes.length === 0 ? (
-            <p className="no-projects-message">Nenhum cliente encontrado. Adicione um novo cliente!</p>
+          {clientesFiltrados.length === 0 ? (
+            <p className="no-projects-message">Nenhum cliente encontrado.</p>
           ) : (
             <div className="projetos-grid">
-              {clientes.map(cliente => (
+              {clientesFiltrados.map(cliente => (
                 <div key={cliente.id} className="projeto-card">
                   <h3>{cliente.nome}</h3>
                   <p className="projeto-descricao">
