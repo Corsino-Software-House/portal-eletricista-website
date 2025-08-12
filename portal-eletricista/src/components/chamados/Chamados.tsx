@@ -31,11 +31,13 @@ export default function Chamados() {
                 <option value="iluminacao">Iluminação interior e exterior (convencional e LED)</option>
                 <option value="ventoinhas">Ventoinhas de teto e exaustores</option>
                 <option value="manutencao">Manutenção preventiva de sistemas elétricos</option>
+                <option value="aumento">Aumento de potência de quadro elétrico, ficha eletrotécnica e padrão E-redes</option>
                 <option value="certificacao">Certificação elétrica (para venda ou arrendamento de imóveis)s</option>
                 <option value="inspecoes">Inspeções técnicas e diagnósticos de falhas</option>
 
               </select>
-              <button className="chamado__botao" onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+              <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
+
             </div>
           </div>
 
@@ -56,7 +58,7 @@ export default function Chamados() {
                 <option value="meters">Consultoria e otimização do consumo elétrico com smart meters</option>
 
               </select>
-              <button className="chamado__botao" onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+               <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
             </div>
           </div>
 
@@ -79,7 +81,7 @@ export default function Chamados() {
                 <option value="certificacao">Certificações e ensaios de pressão/estanqueidade</option>
 
               </select>
-              <button className="chamado__botao"onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+               <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
             </div>
           </div>
 
@@ -97,7 +99,7 @@ export default function Chamados() {
                 <option value="interruptores">Substituição de tomadas e interruptores danificados</option>
 
               </select>
-              <button className="chamado__botao"onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+ <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
             </div>
           </div>
 
@@ -115,7 +117,7 @@ export default function Chamados() {
                 <option value="aquecedores">Problemas com aquecedores elétricos ou termoacumuladores</option>
 
               </select>
-              <button className="chamado__botao"onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+               <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
             </div>
           </div>
 
@@ -133,7 +135,8 @@ export default function Chamados() {
                 <option value="possibilidade">Possibilidade de crescer na reputação e ser técnico preferencial</option>
 
               </select>
-              <button className="chamado__botao"onClick={handleSolicitarChamado}>Solicitar Chamado</button>
+               <button className="chamado__botao" onClick={handleSolicitarChamado}>Escolher Projeto</button>
+
             </div>
           </div>
 

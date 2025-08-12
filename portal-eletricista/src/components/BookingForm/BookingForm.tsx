@@ -9,7 +9,7 @@ const BookingForm: React.FC = () => {
     nome: '',
     descricao: '',
     cidade: '',
-    bairro: '',
+    distrito: '',
     especialidade: '',
   });
   const navigate = useNavigate();
@@ -71,8 +71,8 @@ const BookingForm: React.FC = () => {
           <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
         </label>
         <label>
-          Bairro:
-          <input type="text" name="bairro" value={formData.bairro} onChange={handleChange} required />
+          Distrito:
+          <input type="text" name="bairro" value={formData.distrito} onChange={handleChange} required />
         </label>
 
         <label>
