@@ -1,39 +1,38 @@
-/* Dashboard.css */
-
 .dashboard-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .menu-title,
 .historico-title {
   text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #1f2937;
 }
 
 .menu-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .menu-card {
   background-color: #f5f9ff;
-  border-left: 8px solid #3b82f6;
+  border-left: 6px solid #3b82f6;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1.2rem;
   text-align: center;
-  flex: 1;
-  min-width: 280px;
+  flex: 1 1 280px;
+  max-width: 300px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
-  color: #333;
+  color: #1f2937;
 }
 
 .menu-card:hover {
@@ -43,61 +42,73 @@
 
 .icon {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.historico-grid {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+  color: #3b82f6;
 }
 
 .historico-card {
-  background-color: #f3f4f6;
+  background-color: #f9fafb;
   border-radius: 1rem;
   padding: 1.5rem;
-  width: 100%;
-  max-width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  text-align: left;
 }
 
-.avaliar-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #3b82f6;
-  font-weight: bold;
-  text-decoration: none;
+.historico-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
 }
 
-.avaliar-link:hover {
-  text-decoration: underline;
+.historico-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
 }
 
 .carousel-wrapper {
   position: relative;
-  padding: 2rem 3rem; /* espaço para as setas */
+  padding: 0 2rem;
 }
 
 .historico-carousel {
-  position: relative;
+  padding: 1rem 0;
 }
 
 .custom-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 5;
+  z-index: 10;
   cursor: pointer;
-  transition: all 0.2s ease;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
-
+.custom-arrow:hover {
+  background-color: #f3f4f6;
+}
 
 .prev-arrow {
-  left: -40px;
+  left: -20px;
 }
 
 .next-arrow {
-  right: -40px;
+  right: -20px;
+}
+
+.sem-historico {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  padding: 1rem;
 }

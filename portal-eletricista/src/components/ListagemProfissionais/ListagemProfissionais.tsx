@@ -1,65 +1,37 @@
-import React, { useState } from 'react';
-import { Trash2 } from 'lucide-react';
-import './ListagemProfissionais.css'; // Reutilizamos o mesmo CSS
+import React, { useState, useEffect } from 'react';
+import './ListagemProfissionais.css'; 
+import { useNavigate } from 'react-router-dom';
+import { verProfissionais } from '../../services/cadastroProfissional.service';
 
-// Definindo a interface para o tipo Profissional
 interface Profissional {
   id: string;
   nome: string;
   email: string;
   telefone: string;
   especialidade: string;
-  
 }
 
 const ListagemProfissionais: React.FC = () => {
-  // Dados mock de profissionais (em um cenário real, viriam de uma API)
-  const [profissionais, setProfissionais] = useState<Profissional[]>([
-    {
-      id: 'prof-001',
-      nome: 'Ricardo Almeida',
-      email: 'ricardo.almeida@example.com',
-      telefone: '(11) 98765-1234',
-      especialidade: 'Eletricista residencial',
-      
-    },
-    {
-      id: 'prof-002',
-      nome: 'Fernanda Lima',
-      email: 'fernanda.lima@example.com',
-      telefone: '(21) 99876-2345',
-      especialidade: 'Eletricista predial',
-      
-    },
-    {
-      id: 'prof-003',
-      nome: 'Gustavo Santos',
-      email: 'gustavo.santos@example.com',
-      telefone: '(31) 97654-3456',
-      especialidade: 'Eletricista industrial',
-      
-    },
-    {
-      id: 'prof-004',
-      nome: 'Patricia Costa',
-      email: 'patricia.costa@example.com',
-      telefone: '(41) 96543-4567',
-      especialidade: 'Automação, domótica e robótica',
-      
-    },
-  ]);
+  const [profissionais, setProfissionais] = useState<Profissional[]>([]);
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Lógica de logout (limpar tokens, redirecionar)
-    console.log("Usuário deslogado!");
-    alert("Você foi desconectado.");
+  useEffect(() => {
+    carregarProfissionais();
+  }, []);
+
+  const carregarProfissionais = async () => {
+    try {
+      const response = await verProfissionais(); 
+      setProfissionais(response);
+    } catch (error) {
+      console.error('Erro ao carregar profissionais:', error);
+    }
   };
 
-  const handleDeleteProfissional = (id: string) => {
-    if (window.confirm("Tem certeza que deseja excluir este profissional?")) {
-      setProfissionais(profissionais.filter(profissional => profissional.id !== id));
-      console.log(`Profissional ${id} excluído.`);
-    }
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate('/login');
   };
 
   return (
@@ -72,7 +44,6 @@ const ListagemProfissionais: React.FC = () => {
           <li><strong><a href="/listagem-clientes">Clientes</a></strong></li>
           <li><strong><a href="/listagem-profissionais">Profissionais</a></strong></li> 
           <li><strong><a href="/listagem-projetos">Projetos</a></strong></li>
-          
         </ul>
         <button onClick={handleLogout} className="logout-button">Sair</button>
       </aside>
@@ -82,33 +53,23 @@ const ListagemProfissionais: React.FC = () => {
           <h2>Listagem de Profissionais</h2>
         </div>
 
-        <div className="projetos-list-container"> {/* Reutilizando o nome da classe CSS */}
+        <div className="projetos-list-container">
           {profissionais.length === 0 ? (
             <p className="no-projects-message">Nenhum profissional encontrado. Adicione um novo profissional!</p>
           ) : (
-            <div className="projetos-grid"> {/* Grid para os cards de profissional */}
+            <div className="projetos-grid">
               {profissionais.map(profissional => (
-                <div key={profissional.id} className="projeto-card"> {/* Reutilizando o nome da classe CSS */}
+                <div key={profissional.id} className="projeto-card">
                   <h3>{profissional.nome}</h3>
-                  <p className="projeto-descricao"> {/* Reutilizando o nome da classe CSS */}
+                  <p className="projeto-descricao">
                     <strong>Email:</strong> {profissional.email}
                   </p>
-                  <p className="projeto-especialidade"> {/* Reutilizando o nome da classe CSS */}
+                  <p className="projeto-especialidade">
                     <strong>Telefone:</strong> {profissional.telefone}
                   </p>
-                  <p className="projeto-especialidade"> {/* Reutilizando o nome da classe CSS */}
+                  <p className="projeto-especialidade">
                     <strong>Especialidade:</strong> {profissional.especialidade}
                   </p>
-
-                  <div className="projeto-actions"> {/* Reutilizando o nome da classe CSS */}
-                    <button
-                      onClick={() => handleDeleteProfissional(profissional.id)}
-                      className="btn-delete"
-                      title="Excluir Profissional"
-                    >
-                      <Trash2 />
-                    </button>
-                  </div>
                 </div>
               ))}
             </div>

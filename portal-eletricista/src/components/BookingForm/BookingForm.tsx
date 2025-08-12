@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './BookingForm.css';
+import { criarRequest } from '../../services/request.service';
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 const BookingForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,22 +12,46 @@ const BookingForm: React.FC = () => {
     distrito: '',
     especialidade: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Dados enviados:', formData);
-    alert('Projeto realizado com sucesso!');
-    setFormData({
-      nome: '',
-      descricao: '',
-      cidade: '',
-      distrito: '',
-      especialidade: '',
-    });
+
+    try {
+      await criarRequest({
+        clienteId: Number(localStorage.getItem('id')),
+        titulo: formData.nome,
+        descricao: formData.descricao,
+        cidade: formData.cidade,
+        bairro: formData.bairro,
+        especialidade: formData.especialidade,
+      });
+
+       Swal.fire({
+              title: "Sucesso!",
+              text: "Projeto publicado com sucesso!",
+              icon: "success",
+            });
+      setFormData({
+        nome: '',
+        descricao: '',
+        cidade: '',
+        bairro: '',
+        especialidade: '',
+      });
+      navigate('/areadocliente');
+    } catch (error) {
+      console.error("Erro ao criar o projeto:", error);
+      Swal.fire({
+        title: "Erro!",
+        text: "Erro ao publicar o projeto. Tente novamente.",
+        icon: "error",
+      });
+    }
   };
 
   return (

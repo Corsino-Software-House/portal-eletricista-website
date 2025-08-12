@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './styles.css';
-import { verProfissionalPorId } from '../../services/cadastroProfissional.service';
-import { criarRequest } from '../../services/review.service';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./styles.css";
+import { verProfissionalPorId } from "../../services/cadastroProfissional.service";
+import { criarRequest } from "../../services/review.service";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 interface Profissional {
   id: string;
@@ -17,8 +18,8 @@ const ProfessionalCard: React.FC = () => {
   const navigate = useNavigate();
   const [profissional, setProfissional] = useState<Profissional | null>(null);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [mensagem, setMensagem] = useState('');
+  const [comment, setComment] = useState("");
+  const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -27,31 +28,39 @@ const ProfessionalCard: React.FC = () => {
           setProfissional(data);
         })
         .catch((error) => {
-          console.error('Erro ao buscar profissional:', error);
+          console.error("Erro ao buscar profissional:", error);
         });
     }
   }, [id]);
 
   const handleEnviar = async () => {
-    if (!profissional || rating === 0 || comment.trim() === '') {
-      setMensagem('Preencha todos os campos.');
+    if (!profissional || rating === 0 || comment.trim() === "") {
+      setMensagem("Preencha todos os campos.");
       return;
     }
 
     try {
-     const clienteId = localStorage.getItem('id');
+      const clienteId = localStorage.getItem("id");
       await criarRequest({
         profissionalId: Number(profissional.id),
         clienteId: Number(clienteId),
         nota: rating,
         comentario: comment,
       });
-      setMensagem('Avaliação enviada com sucesso!');
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Feedback enviado!",
+        icon: "success",
+      });
       setRating(0);
-      setComment('');
-      navigate('/areadocliente/menu');
+      setComment("");
+      navigate("/areadocliente/menu");
     } catch (error) {
-      setMensagem('Erro ao enviar avaliação.');
+      Swal.fire({
+        title: "Erro!",
+        text: "Feedback não enviado! Tente novamente.",
+        icon: "error",
+      });
     }
   };
 
@@ -60,20 +69,31 @@ const ProfessionalCard: React.FC = () => {
       <div className="card-header">
         <div className="avatar">
           {profissional?.fotoUrl ? (
-            <img src={profissional.fotoUrl} alt={`Foto de ${profissional.nome}`} />
+            <img
+              src={profissional.fotoUrl}
+              alt={`Foto de ${profissional.nome}`}
+            />
           ) : (
-            <div className="avatar-placeholder" />
+            <img
+              src={profissional?.fotoUrl || "/user.png"}
+              alt={`Foto de ${profissional?.nome}`}
+              onError={(e) => (e.currentTarget.src = "/user.png")}
+            />
           )}
         </div>
         <div className="info">
-          <h2 className="name">{profissional ? profissional.nome : 'Carregando...'}</h2>
-          <p className="label">{profissional ? profissional.especialidade : 'Carregando...'}</p>
+          <h2 className="name">
+            {profissional ? profissional.nome : "Carregando..."}
+          </h2>
+          <p className="label">
+            {profissional ? profissional.especialidade : "Carregando..."}
+          </p>
           <div className="stars">
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
                 onClick={() => setRating(star)}
-                className={star <= rating ? 'star active' : 'star'}
+                className={star <= rating ? "star active" : "star"}
               >
                 ★
               </span>
@@ -87,7 +107,9 @@ const ProfessionalCard: React.FC = () => {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
       />
-      <button className="submit" onClick={handleEnviar}>Enviar</button>
+      <button className="submit" onClick={handleEnviar}>
+        Enviar
+      </button>
       {mensagem && <p className="mensagem">{mensagem}</p>}
     </div>
   );

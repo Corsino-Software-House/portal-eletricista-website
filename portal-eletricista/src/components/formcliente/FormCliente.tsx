@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { login } from "../../services/login.service";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../components/spinner/spinner"; // import do spinner
 
 type FormData = {
   email: string;
@@ -26,12 +27,11 @@ export default function FormCliente() {
     setLoading(true);
     try {
       const resposta = await login(data.email, data.senha, tipo);
-       localStorage.setItem("email", data.email);
-        localStorage.setItem("id", resposta.id);
-       localStorage.setItem("tipo", tipo);
-      setMensagem("Login realizado com sucesso!");
-      console.log(resposta);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("id", resposta.id);
+      localStorage.setItem("tipo", tipo);
       sessionStorage.setItem("token", resposta.access_token);
+      setMensagem("Login realizado com sucesso!");
       navigate("/areadocliente/menu");
     } catch (erro) {
       setMensagem("Erro ao fazer login. Verifique os dados.");
@@ -79,7 +79,7 @@ export default function FormCliente() {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? <span className="spinner"></span> : "Acessar"}
+          {loading ? <LoadingSpinner /> : "Acessar"}
         </button>
 
         {mensagem && <p className="mensagem">{mensagem}</p>}

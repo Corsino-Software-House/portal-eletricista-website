@@ -2,32 +2,32 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://portal-eletricista-api.onrender.com', 
+  baseURL: 'https://api.techmanlight.pt/', 
 });
 
 
 
 export const infoCliente = async (email : string) => {
   try {
-    const response = await api.get('/cliente/account', {
+    const response = await api.get(`/cliente/account/${email}`, {
       params: { email },
     });
     return response.data;
   } catch (error) {
     const err = error as any;
-    console.error('Erro ao fazer cadastro de cliente', err.response?.data || err.message);
+    console.error('Erro ao buscar informacoes de cliente', err.response?.data || err.message);
     throw error;
   }
 };
 export const infoProfissional = async ( email : string) => {
   try {
-    const response = await api.get('/profissional/account', {
+    const response = await api.get(`/profissional/account/${email}`, {
      params: { email },
     });
     return response.data;
   } catch (error) {
     const err = error as any;
-    console.error('Erro ao fazer cadastro de profissional', err.response?.data || err.message);
+    console.error('Erro ao fazer uscar informacoes profissional', err.response?.data || err.message);
     throw error;
   }
 };

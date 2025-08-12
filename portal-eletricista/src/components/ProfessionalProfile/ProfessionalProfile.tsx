@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './styles.css';
-import { useParams } from 'react-router-dom';
-import { verProfissionalPorId } from '../../services/cadastroProfissional.service';
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+import { useParams } from "react-router-dom";
+import { verProfissionalPorId } from "../../services/cadastroProfissional.service";
 
 type Professional = {
   id: number;
@@ -30,7 +30,7 @@ const ProfessionalProfile: React.FC = () => {
         setErro(null);
       })
       .catch((e) => {
-        setErro('Erro ao carregar os dados do profissional.');
+        setErro("Erro ao carregar os dados do profissional.");
         console.error(e);
       })
       .finally(() => setLoading(false));
@@ -44,19 +44,28 @@ const ProfessionalProfile: React.FC = () => {
     <div className="profile-container">
       <div className="profile-card">
         <img
-          src={profissional.fotoUrl || 'https://via.placeholder.com/150'}
+          src={profissional.fotoUrl || "/user.png"}
+          onError={(e) => (e.currentTarget.src = "/user.png")}
           alt={`Foto de ${profissional.nome}`}
           className="profile-img"
         />
         <div className="profile-info">
           <h2>{profissional.nome}</h2>
-          <p><strong>Especialidade:</strong> {profissional.especialidade}</p>
-          <p><strong>Cidade:</strong> {profissional.cidade}</p>
+          <p>
+            <strong>Especialidade:</strong> {profissional.especialidade}
+          </p>
+          <p>
+            <strong>Cidade:</strong> {profissional.cidade}
+          </p>
           {profissional.telefone && (
-            <p><strong>Telefone para contato:</strong> {profissional.telefone}</p>
+            <p>
+              <strong>Telefone para contato:</strong> {profissional.telefone}
+            </p>
           )}
           {profissional.notaMedia !== undefined && (
-            <p><strong>Nota média:</strong> {profissional.notaMedia.toFixed(1)} ★</p>
+            <p>
+              <strong>Nota média:</strong> {profissional.notaMedia.toFixed(1)} ★
+            </p>
           )}
           <p className="descricao">{profissional.descricao}</p>
         </div>

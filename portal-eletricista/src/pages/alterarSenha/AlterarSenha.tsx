@@ -3,6 +3,10 @@ import { alterarSenhaCliente, alterarSenhaProfissional } from '../../services/al
 import './styles.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { useState } from 'react';
+import LoadingSpinner from '../../components/spinner/spinner'; 
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 type FormData = {
   senhaAtual: string;
@@ -17,7 +21,11 @@ export default function AlterarSenha() {
     reset,
   } = useForm<FormData>();
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const onSubmit = async (data: FormData) => {
+    setLoading(true);
     try {
       const id = localStorage.getItem('id');
       const tipo = localStorage.getItem('tipo'); 
@@ -33,10 +41,21 @@ export default function AlterarSenha() {
         await alterarSenhaProfissional(id, data.senhaAtual, data.novaSenha);
       }
 
-      alert('Senha alterada com sucesso!');
+      Swal.fire({
+              title: "Sucesso!",
+              text: "Senha alterada com sucesso!",
+              icon: "success",
+            });
       reset();
+      navigate('/conta'); 
     } catch (error: any) {
-      alert(error?.response?.data?.message || 'Erro ao alterar a senha.');
+         Swal.fire({
+              title: "Erro!",
+              text: "Erro ao alterar a senha!",
+              icon: "error",
+            });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,8 +100,8 @@ export default function AlterarSenha() {
               {errors.novaSenha && <p className="error">{errors.novaSenha.message}</p>}
             </div>
 
-            <button type="submit" className="btn-salvar">
-              Salvar
+            <button type="submit" className="btn-salvar" disabled={loading}>
+              {loading ? <LoadingSpinner /> : 'Salvar'}
             </button>
           </form>
         </div>
