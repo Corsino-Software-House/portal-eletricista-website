@@ -94,6 +94,14 @@ export default function FormCliente() {
             </a>
           </strong>
         </p>
+        <p>
+          Esqueceu a senha?{" "}
+          <strong>
+            <a className="registro-cliente" href="/cliente/esqueci-senha">
+              Clique Aqui
+            </a>
+          </strong>
+        </p>
       </div>
     </>
   );

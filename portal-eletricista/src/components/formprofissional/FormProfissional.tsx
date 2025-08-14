@@ -94,6 +94,14 @@ export default function AuthFormProfissional() {
             </a>
           </strong>
         </p>
+        <p>
+          Esqueceu a senha?{" "}
+          <strong>
+            <a className="registro-cliente" href="/profissional/esqueci-senha">
+              Clique Aqui
+            </a>
+          </strong>
+        </p>
       </div>
     </>
   );

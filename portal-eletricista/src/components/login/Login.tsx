@@ -81,6 +81,7 @@ const Login: React.FC = () => {
           {mensagem && <p className="mensagem">{mensagem}</p>}
 
           <a href="./cadastro"><strong>Cadastrar-se</strong></a>
+          <a href="./admin/esqueci-senha">Esqueceu a senha? <strong>Clique Aqui</strong></a>
         </form>
       </div>
     </div>

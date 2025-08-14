@@ -33,6 +33,15 @@ import ListagemCliente from "./pages/ListagemClientes/ListagemClientes";
 import ListagemProfissional from "./pages/ListagemProfissionais/ListagemProfissionais";
 import SuccessScreen from "./pages/sucesso/SucessoPage";
 import CancelledScreen from "./pages/cancelado/Cancelado";
+import ForgotPasswordCliente from "./pages/forgotPasswordCliente/forgotPasswordCliente";
+import OtpCliente from "./pages/forgotPasswordCliente/Otp/otpCliente";
+import AlterarSenhaCliente from "./pages/forgotPasswordCliente/alterarSenha/alterarSenhaCliente";
+import ForgotPasswordProfissional from "./pages/forgotPasswordProfissional/forgotPasswordProfissional";
+import OtpProfissional from "./pages/forgotPasswordProfissional/Otp/otpProfissional";
+import AlterarSenhaProfissional from "./pages/forgotPasswordProfissional/alterarSenha/alterarSenhaProfissional";
+import ForgotPasswordAdmin from "./pages/forgotPasswordAdmin/forgotPasswordAdmin";
+import OtpAdmin from "./pages/forgotPasswordAdmin/Otp/otpAdmin";
+import AlterarSenhaAdmin from "./pages/forgotPasswordAdmin/alterarSenha/alterarSenhaAdmin";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -42,6 +51,16 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/creditos", element: <PlanosDeCreditos /> },
+  {path: "cliente/esqueci-senha", element: <ForgotPasswordCliente /> },
+  {path: "cliente/otp", element: <OtpCliente /> },
+  {path: "cliente/alterar-senha", element: <AlterarSenhaCliente /> },
+  {path: "profissional/esqueci-senha", element: <ForgotPasswordProfissional /> },
+  {path: "profissional/otp", element: <OtpProfissional /> },
+  {path: "profissional/alterar-senha", element: <AlterarSenhaProfissional /> },
+  {path: "admin/esqueci-senha", element: <ForgotPasswordAdmin /> },
+  {path: "admin/otp", element: <OtpAdmin /> },
+  {path: "admin/alterar-senha", element: <AlterarSenhaAdmin /> },
+
 
   {
     path: "/dashboard",
