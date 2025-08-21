@@ -3,6 +3,7 @@ import './BookingForm.css';
 import { criarRequest } from '../../services/request.service';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from "lucide-react";
 
 const BookingForm: React.FC = () => {
   const navigate = useNavigate();
@@ -17,44 +18,52 @@ const BookingForm: React.FC = () => {
 
   // Lista completa de especialidades (deve bater com os valores do select)
   const todasEspecialidades = [
-    "Instalação elétrica completa (obra nova ou remodelação)",
-    "Substituição de quadros elétricos",
-    "Instalação de disjuntores e diferencial",
-    "Passagem e substituição de cabos",
-    "Tomadas e interruptores",
-    "Iluminação interior e exterior",
-    "Ventoinhas de teto e exaustores",
-    "Manutenção preventiva de sistemas elétricos",
-    "Certificação elétrica",
-    "Inspeções técnicas e diagnósticos de falha",
-    "Instalação e configuração de assistentes virtuais",
-    "Tomadas e interruptores inteligentes",
-    "Automatização de iluminação e persianas",
-    "Instalação de câmeras de vigilância (CCTV)",
-    "Instalação de sensores de segurança",
-    "Controle remoto via app",
-    "Integração de sistemas com domótica",
-    "Consultoria e otimização com smart meter",
-    "Reparação de fugas de água",
-    "Desentupimentos",
-    "Instalação de torneiras e chuveiros",
-    "Substituição de loiças sanitárias",
-    "Instalação de máquinas de lavar",
-    "Reparação e substituição de autoclismos",
-    "Montagem de sistemas de filtragem de água",
-    "Canalizações completas para obras",
-    "Verificação e substituição de esgotos",
-    "Certificações e ensaios hidráulicos",
-    "Reparos simples elétricos e hidráulicos",
-    "Manutenção periódica de sistemas",
-    "Pequenas remodelações de cozinha e WC",
-    "Instalação de suportes e luminárias",
-    "Falta de energia elétrica",
-    "Disjuntor queimado / quadro disparando",
-    "Fugas de água ou risco de inundação",
-    "Entupimentos graves",
-    "Problemas com aquecedores"
-  ];
+  "Instalação elétrica completa (obra nova ou remodelação)",
+  "Substituição de quadros elétricos",
+  "Instalação de disjuntores e diferencial",
+  "Passagem e substituição de cabos",
+  "Tomadas e interruptores (instalação, substituição, reparo)",
+  "Iluminação interior e exterior (convencional e LED)",
+  "Ventoinhas de teto e exaustores",
+  "Manutenção preventiva de sistemas elétricos",
+  "Aumento de potência de quadro elétrico, ficha eletrotécnica e padrão E-redes",
+  "Certificação elétrica (para venda ou arrendamento de imóveis)",
+  "Inspeções técnicas e diagnósticos de falhas",
+  "Instalação e configuração de assistentes virtuais (Alexa, Google Home, etc.)",
+  "Instalação de tomadas e interruptores inteligentes (Wi-Fi)",
+  "Automatização de iluminação, estores e persianas",
+  "Instalação de câmeras de vigilância (CCTV)",
+  "Instalação de sensores de movimento, fumaça, gás e inundação",
+  "Controlo remoto de dispositivos via app",
+  "Integração de sistemas de segurança com domótica",
+  "Consultoria e otimização do consumo elétrico com smart meters",
+  "Reparação de fugas de água (canos, torneiras, sifões)",
+  "Desentupimentos (sanitas, lavatórios, ralos, canos)",
+  "Instalação de torneiras, chuveiros e misturadoras",
+  "Substituição de loiças sanitárias (sanitas, bidês, lavatórios)",
+  "Instalação de máquinas de lavar roupa/loiça",
+  "Reparação e substituição de autoclismos",
+  "Montagem de sistemas de filtragem e purificação de água",
+  "Canalizações completas para obras novas ou remodelações",
+  "Verificação e substituição de esgotos e águas pluviais",
+  "Certificações e ensaios de pressão/estanqueidade",
+  "Reparos elétricos e hidráulicos simples",
+  "Manutenção periódica de sistemas",
+  "Pequenas remodelações de cozinha e WC (ligadas a elétrica e canalização)",
+  "Instalação de suportes de TV, luminárias, cortinados",
+  "Substituição de tomadas e interruptores danificados",
+  "Falta de energia elétrica",
+  "Quadro a disparar / disjuntor queimado",
+  "Fugas de água visíveis ou risco de inundação",
+  "Entupimentos graves",
+  "Problemas com aquecedores elétricos ou termoacumuladores",
+  "Receba pedidos filtrados por zona, tipo de serviço e urgência",
+  "Pagamento seguro e garantido pela plataforma",
+  "Flexibilidade de horários e aceitação de serviços",
+  "Acesso a cliente final com perfil validado",
+  "Possibilidade de crescer na reputação e ser técnico preferencial"
+];
+
 
   // Normaliza strings para comparação
   const normalizar = (texto: string) => texto.trim().toLowerCase();
@@ -114,6 +123,26 @@ const BookingForm: React.FC = () => {
   };
 
   return (
+    <>
+     <div style={{ padding: "10px" }}>
+          <button
+            onClick={() => navigate("/areadocliente/menu")}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
+   
     <div className="booking-container">
       <h2>Postagem do Projeto</h2>
       <form className="booking-form" onSubmit={handleSubmit}>
@@ -171,45 +200,47 @@ const BookingForm: React.FC = () => {
               <option value="Substituição de quadros elétricos">Substituição de quadros elétricos</option>
               <option value="Instalação de disjuntores e diferencial">Instalação de disjuntores e diferencial</option>
               <option value="Passagem e substituição de cabos">Passagem e substituição de cabos</option>
-              <option value="Tomadas e interruptores">Tomadas e interruptores</option>
-              <option value="Iluminação interior e exterior">Iluminação interior e exterior</option>
+              <option value="Tomadas e interruptores (instalação, substituição, reparo)">Tomadas e interruptores (instalação, substituição, reparo)</option>
+              <option value="Iluminação interior e exterior (convencional e LED)">Iluminação interior e exterior (convencional e LED)</option>
               <option value="Ventoinhas de teto e exaustores">Ventoinhas de teto e exaustores</option>
               <option value="Manutenção preventiva de sistemas elétricos">Manutenção preventiva de sistemas elétricos</option>
-              <option value="Certificação elétrica">Certificação elétrica</option>
-              <option value="Inspeções técnicas e diagnósticos de falha">Inspeções técnicas e diagnósticos de falha</option>
+              <option value="Aumento de potência de quadro elétrico, ficha eletrotécnica e padrão E-redes">Aumento de potência de quadro elétrico, ficha eletrotécnica e padrão E-redes</option>
+              <option value="Certificação elétrica (para venda ou arrendamento de imóveis)">Certificação elétrica (para venda ou arrendamento de imóveis)</option>
+              <option value="Inspeções técnicas e diagnósticos de falhas">Inspeções técnicas e diagnósticos de falhas</option>
             </optgroup>
             <optgroup label="Domótica / Smart Home">
-              <option value="Instalação e configuração de assistentes virtuais">Instalação e configuração de assistentes virtuais</option>
-              <option value="Tomadas e interruptores inteligentes">Tomadas e interruptores inteligentes</option>
-              <option value="Automatização de iluminação e persianas">Automatização de iluminação e persianas</option>
+              <option value="Instalação e configuração de assistentes virtuais (Alexa, Google Home, etc.)">Instalação e configuração de assistentes virtuais (Alexa, Google Home, etc.)</option>
+              <option value="Instalação de tomadas e interruptores inteligentes (Wi-Fi)">Instalação de tomadas e interruptores inteligentes (Wi-Fi)</option>
+              <option value="Automatização de iluminação, estores e persianas">Automatização de iluminação, estores e persianas</option>
               <option value="Instalação de câmeras de vigilância (CCTV)">Instalação de câmeras de vigilância (CCTV)</option>
-              <option value="Instalação de sensores de segurança">Instalação de sensores de segurança</option>
-              <option value="Controle remoto via app">Controle remoto via app</option>
-              <option value="Integração de sistemas com domótica">Integração de sistemas com domótica</option>
-              <option value="Consultoria e otimização com smart meter">Consultoria e otimização com smart meter</option>
+              <option value="Instalação de sensores de movimento, fumaça, gás e inundação">Instalação de sensores de movimento, fumaça, gás e inundação</option>
+              <option value="Controlo remoto de dispositivos via app">Controlo remoto de dispositivos via app</option>
+              <option value="Integração de sistemas de segurança com domótica">Integração de sistemas de segurança com domótica</option>
+              <option value="Consultoria e otimização do consumo elétrico com smart meters">Consultoria e otimização do consumo elétrico com smart meters</option>
             </optgroup>
             <optgroup label="Hidráulica / Canalização">
-              <option value="Reparação de fugas de água">Reparação de fugas de água</option>
-              <option value="Desentupimentos">Desentupimentos</option>
-              <option value="Instalação de torneiras e chuveiros">Instalação de torneiras e chuveiros</option>
-              <option value="Substituição de loiças sanitárias">Substituição de loiças sanitárias</option>
-              <option value="Instalação de máquinas de lavar">Instalação de máquinas de lavar</option>
+              <option value="Reparação de fugas de água (canos, torneiras, sifões)">Reparação de fugas de água (canos, torneiras, sifões)</option>
+              <option value="Desentupimentos (sanitas, lavatórios, ralos, canos)">Desentupimentos (sanitas, lavatórios, ralos, canos)</option>
+              <option value="Instalação de torneiras, chuveiros e misturadoras">Instalação de torneiras, chuveiros e misturadoras</option>
+              <option value="Substituição de loiças sanitárias (sanitas, bidês, lavatórios)">Substituição de loiças sanitárias (sanitas, bidês, lavatórios)</option>
+              <option value="Instalação de máquinas de lavar roupa/loiça">Instalação de máquinas de lavar roupa/loiça</option>
               <option value="Reparação e substituição de autoclismos">Reparação e substituição de autoclismos</option>
-              <option value="Montagem de sistemas de filtragem de água">Montagem de sistemas de filtragem de água</option>
-              <option value="Canalizações completas para obras">Canalizações completas para obras</option>
-              <option value="Verificação e substituição de esgotos">Verificação e substituição de esgotos</option>
-              <option value="Certificações e ensaios hidráulicos">Certificações e ensaios hidráulicos</option>
+              <option value="Montagem de sistemas de filtragem e purificação de água">Montagem de sistemas de filtragem e purificação de água</option>
+              <option value="Canalizações completas para obras novas ou remodelações">Canalizações completas para obras novas ou remodelações</option>
+              <option value="Verificação e substituição de esgotos e águas pluviais">Verificação e substituição de esgotos e águas pluviais</option>
+              <option value="Certificações e ensaios de pressão/estanqueidade">Certificações e ensaios de pressão/estanqueidade</option>
             </optgroup>
             <optgroup label="Serviços Gerais e Emergência">
-              <option value="Reparos simples elétricos e hidráulicos">Reparos simples elétricos e hidráulicos</option>
+              <option value="Reparos elétricos e hidráulicos simples">Reparos elétricos e hidráulicos simples</option>
               <option value="Manutenção periódica de sistemas">Manutenção periódica de sistemas</option>
-              <option value="Pequenas remodelações de cozinha e WC">Pequenas remodelações de cozinha e WC</option>
-              <option value="Instalação de suportes e luminárias">Instalação de suportes e luminárias</option>
+              <option value="Pequenas remodelações de cozinha e WC (ligadas a elétrica e canalização)">Pequenas remodelações de cozinha e WC (ligadas a elétrica e canalização)</option>
+              <option value="Instalação de suportes de TV, luminárias, cortinados">Instalação de suportes de TV, luminárias, cortinados</option>
+              <option value="Substituição de tomadas e interruptores danificados">Substituição de tomadas e interruptores danificados</option>
               <option value="Falta de energia elétrica">Falta de energia elétrica</option>
-              <option value="Disjuntor queimado / quadro disparando">Disjuntor queimado / quadro disparando</option>
-              <option value="Fugas de água ou risco de inundação">Fugas de água ou risco de inundação</option>
+              <option value="Quadro a disparar / disjuntor queimado">Quadro a disparar / disjuntor queimado</option>
+              <option value="Fugas de água visíveis ou risco de inundação">Fugas de água visíveis ou risco de inundação</option>
               <option value="Entupimentos graves">Entupimentos graves</option>
-              <option value="Problemas com aquecedores">Problemas com aquecedores</option>
+              <option value="Problemas com aquecedores elétricos ou termoacumuladores">Problemas com aquecedores elétricos ou termoacumuladores</option>
             </optgroup>
           </select>
         </label>
@@ -217,6 +248,7 @@ const BookingForm: React.FC = () => {
         <button type="submit">Publicar</button>
       </form>
     </div>
+     </>  
   );
 };
 

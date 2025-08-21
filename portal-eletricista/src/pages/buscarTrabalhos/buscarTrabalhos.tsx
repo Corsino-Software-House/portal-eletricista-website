@@ -4,6 +4,8 @@ import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { buscarTodasRequests } from "../../services/request.service";
+import { ArrowLeft } from "lucide-react";
+
 
 type Request = {
   id: number;
@@ -46,7 +48,24 @@ export default function BuscarTrabalhos() {
   return (
     <>
       <Header />
-
+    <div style={{ padding: "10px",background: "#f2f4f8" }}>
+          <button
+            onClick={() => navigate("/areadoprofissional/menu")}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
       <div className="trabalhos-wrapper">
         <h1>Buscar Trabalhos</h1>
 

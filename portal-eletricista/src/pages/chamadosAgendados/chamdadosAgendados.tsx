@@ -3,6 +3,8 @@ import "./styles.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { listarUsosPorProfissional } from "../../services/usarCreditos.service";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type Cliente = {
   id: number;
@@ -30,6 +32,7 @@ export default function ChamadosAgendados() {
   const [chamados, setChamados] = useState<Chamado[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const profissionalId = localStorage.getItem("id");
@@ -62,6 +65,24 @@ export default function ChamadosAgendados() {
         }}
       >
         <Header />
+        <div style={{ padding: "10px" }}>
+          <button
+            onClick={() => navigate("/areadoprofissional/menu")}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
         <div className="chamados-container">
           <h1>Projetos em que se candidatou</h1>
 

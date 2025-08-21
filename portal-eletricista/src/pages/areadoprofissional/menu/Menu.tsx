@@ -16,9 +16,9 @@ import { CreditsoProfissional } from "../../../services/subscription.service";
 
 const menuItems = [
   {
-    title: "Chamados Agendados",
+    title: "Projetos Candidatos",
     description:
-      "Visualize todos os serviços que você já agendou, com detalhes como data, horário, cliente e status do atendimento.",
+      "Visualize todos os serviços que você já se candidatou.",
     icon: <Calendar size={32} />,
     path: "/areadoprofissional/chamados-agendados",
   },

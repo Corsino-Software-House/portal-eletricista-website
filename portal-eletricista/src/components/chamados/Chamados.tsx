@@ -17,6 +17,7 @@ export default function Chamados() {
     const token = sessionStorage.getItem("token");
     // Salva o texto da opção selecionada no localStorage
     localStorage.setItem("tituloProjeto", selectedTexts[index] || "");
+    localStorage.setItem("redirect", true.toString());
 
     if (token) {
       navigate("/agendamento");

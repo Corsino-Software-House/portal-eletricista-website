@@ -3,6 +3,8 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
 import { buscarAvaliacoesPorProfissional } from "../../services/review.service";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type Review = {
   id: number;
@@ -21,6 +23,7 @@ export default function MinhasAvaliacoes() {
   const [avaliacoes, setAvaliacoes] = useState<Review[]>([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const totalPaginas = Math.ceil(avaliacoes.length / AVALIACOES_POR_PAGINA);
 
@@ -54,6 +57,24 @@ export default function MinhasAvaliacoes() {
       height: "100vh",
     }}>
       <Header />
+      <div style={{ padding: "10px",background: "#f2f4f8"}}>
+          <button
+            onClick={() => navigate("/areadoprofissional/menu")}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
       <div className="avaliacoes-section">
         <h1>Minhas Avaliações</h1>
 

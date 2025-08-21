@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
-import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 import { editarPerfilCliente } from '../../services/editarPerfil.service';
 import { editarPerfilProfissional } from '../../services/editarPerfil.service';
@@ -104,6 +106,17 @@ export default function EditarPerfil() {
     }
   };
 
+   const handleBack = () => {
+    const userType = localStorage.getItem("tipo"); 
+
+    if (userType === "profissional") {
+      navigate("/conta");
+    } else {
+      // default ou se for cliente
+      navigate("/conta");
+    }
+  }
+
   return (
     <>
       <div
@@ -115,6 +128,25 @@ export default function EditarPerfil() {
         }}
       >
         <Header />
+        <div style={{ padding: "10px" }}>
+          <button
+            onClick={handleBack}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
+
         <div className="editar-perfil-container">
           <h1 className="editar-perfil-title">Editar Perfil</h1>
           <form className="editar-perfil-form" onSubmit={handleSubmit}>

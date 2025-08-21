@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LoadingSpinner from '../../components/spinner/spinner'; 
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from "lucide-react";
 
 type FormData = {
   senhaAtual: string;
@@ -59,6 +60,17 @@ export default function AlterarSenha() {
     }
   };
 
+   const handleBack = () => {
+    const userType = localStorage.getItem("tipo"); 
+
+    if (userType === "profissional") {
+      navigate("/conta");
+    } else {
+      // default ou se for cliente
+      navigate("/conta");
+    }
+  }
+
   return (
     <>
       <div
@@ -70,6 +82,24 @@ export default function AlterarSenha() {
         }}
       >
         <Header />
+        <div style={{ padding: "10px" }}>
+                  <button
+                    onClick={handleBack}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "16px",
+                      color: "#3259daff",
+                    }}
+                  >
+                    <ArrowLeft size={22} />
+                    Voltar
+                  </button>
+                </div>
         <div className="senha-container">
           <form className="senha-form" onSubmit={handleSubmit(onSubmit)}>
             <h2>Alterar Senha</h2>

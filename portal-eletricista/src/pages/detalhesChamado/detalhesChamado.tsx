@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { ArrowLeft } from "lucide-react";
 
 export default function DetalhesDoChamado() {
   const { id } = useParams(); 
@@ -77,6 +78,24 @@ export default function DetalhesDoChamado() {
   return (
     <>
       <Header />
+      <div style={{ padding: "10px",background: "#f2f4f8" }}>
+          <button
+            onClick={() => navigate("/areadoprofissional/buscar-trabalhos")}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "16px",
+              color: "#3259daff",
+            }}
+          >
+            <ArrowLeft size={22} />
+            Voltar
+          </button>
+        </div>
       <div className="detalhes-container">
         <div className="detalhes-card">
           <h1>{trabalho.titulo}</h1>

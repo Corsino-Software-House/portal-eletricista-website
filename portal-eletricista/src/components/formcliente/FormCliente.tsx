@@ -31,8 +31,16 @@ export default function FormCliente() {
       localStorage.setItem("id", resposta.id);
       localStorage.setItem("tipo", tipo);
       sessionStorage.setItem("token", resposta.access_token);
+      const redirect = localStorage.getItem("redirect");
       setMensagem("Login realizado com sucesso!");
-      navigate("/areadocliente/menu");
+      if (redirect === "true") {
+        localStorage.removeItem("redirect");
+        navigate("/agendamento");
+        return;
+      }else{
+       navigate("/areadocliente/menu");
+       return;
+      }
     } catch (erro) {
       setMensagem("Erro ao fazer login. Verifique os dados.");
       console.error(erro);
