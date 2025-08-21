@@ -8,7 +8,7 @@ import { criarPedidoDePlano } from "../../services/paypal.service";
 
 export default function PlanosDeCreditos() {
   const planos = [
-    { nome: "Básico", preco: 25, creditos: 20 },
+    { nome: "Básico", preco: 1, creditos: 20 },
     { nome: "Poupança", preco: 60, creditos: 60 },
     { nome: "Profissional", preco: 90, creditos: 100 },
     { nome: "Elite", preco: 120, creditos: 150 },
