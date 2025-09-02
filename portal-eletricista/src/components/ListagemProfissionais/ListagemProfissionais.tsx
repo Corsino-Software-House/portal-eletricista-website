@@ -60,10 +60,10 @@ const ListagemProfissionais: React.FC = () => {
         <h2>Painel</h2>
         <ul>
           <li><strong><a href="/dashboard">Dashboard</a></strong></li> 
-          <li><strong><a href="#">Valor Total</a></strong></li>
           <li><strong><a href="/listagem-clientes">Clientes</a></strong></li>
           <li><strong><a href="/listagem-profissionais">Profissionais</a></strong></li> 
           <li><strong><a href="/listagem-projetos">Projetos</a></strong></li>
+          <li><strong><a href="/listagem-reviews">Reviews</a></strong></li>
         </ul>
         <button onClick={handleLogout} className="logout-button">Sair</button>
       </aside>

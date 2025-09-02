@@ -145,33 +145,25 @@
   margin-bottom: 12px;
 }
 
-.projeto-card .projeto-descricao {
+ .projeto-descricao {
   font-size: 15px;
   color: #555;
   line-height: 1.6;
   margin-bottom: 15px;
   flex-grow: 1; /* Permite que a descrição ocupe o espaço necessário */
 }
-
-.projeto-card .projeto-especialidade {
+ .projeto-especialidade {
   font-size: 14px;
   color: #777;
   margin-bottom: 10px;
 }
 
-.projeto-card .projeto-creditos-info p {
+ .projeto-creditos-info p {
   font-size: 14px;
   color: #444;
   margin-bottom: 5px;
 }
 
-.projeto-card .projeto-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 20px;
-  justify-content: space-between; /* Alinha os elementos nas extremidades */
-}
 
 .projetos-list-container .creditos-input-group {
   display: flex;
@@ -226,6 +218,77 @@
   font-size: 1.2em;
   margin-top: 50px;
 }
+.projeto-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.creditos-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-aplicar-creditos {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+.btn-aplicar-creditos:hover {
+  background-color: #218838;
+}
+
+.btn-aprovar {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+.btn-aprovar:hover {
+  background-color: #1558b0;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
 
 
 /* Responsivo */

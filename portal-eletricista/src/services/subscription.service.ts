@@ -3,9 +3,9 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: 'https://api.techmanlight.pt/', 
 });
-export const CreditsoProfissional = async (id: number) => {
+export const CreditsoProfissional = async (profissionalId: number) => {
   try {
-    const response = await api.get(`subscriptions/credito/${id}`);
+    const response = await api.get(`subscriptions/credito/${profissionalId}`);
     return response.data;
   } catch (error) {
     const err = error as any;

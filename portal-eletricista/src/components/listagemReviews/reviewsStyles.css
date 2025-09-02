@@ -1,0 +1,219 @@
+/* ===== Layout Geral ===== */
+.reviews-dashboard {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* ===== Sidebar ===== */
+.reviews-sidebar {
+  width: 260px;
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews-sidebar-title {
+  font-size: 22px;
+  margin-bottom: 70px;
+}
+
+.reviews-sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reviews-sidebar-menu li {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.reviews-sidebar-menu li strong a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.reviews-sidebar-menu li strong a:hover {
+  color: #050085;
+}
+
+/* Botão de logout */
+.reviews-logout-btn {
+  margin-top: 30px;
+  padding: 12px;
+  background-color: #0147a2;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reviews-logout-btn:hover {
+  background-color: #012f6b;
+}
+
+/* ===== Conteúdo principal ===== */
+.reviews-main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviews-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.reviews-header h2 {
+  font-size: 28px;
+  color: #1a1a1a;
+}
+
+/* ===== Cards de Reviews ===== */
+.reviews-list-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.reviews-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reviews-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.reviews-card-title {
+  font-size: 22px;
+  color: #1a73e8;
+  margin-bottom: 12px;
+}
+
+.reviews-card-comment {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.reviews-card-status,
+.reviews-card-rating,
+.reviews-card-date {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.reviews-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  justify-content: space-between;
+}
+
+/* ===== Botões ===== */
+.reviews-btn-approve,
+.reviews-btn-reject,
+.reviews-btn-delete {
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviews-btn-approve {
+  background-color: #1a73e8;
+  font-weight: 600;
+}
+
+.reviews-btn-approve:hover {
+  background-color: #1558b0;
+}
+
+.reviews-btn-reject {
+  background-color: #dc3545;
+}
+
+.reviews-btn-reject:hover {
+  background-color: #c82333;
+}
+
+.reviews-btn-delete {
+  background-color: #dc3545;
+  justify-content: center;
+}
+
+.reviews-btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Mensagem sem reviews */
+.reviews-no-items {
+  text-align: center;
+  color: #666;
+  font-size: 1.2em;
+  margin-top: 50px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .reviews-dashboard {
+    flex-direction: column;
+  }
+
+  .reviews-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .reviews-main-content {
+    padding: 20px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-card .reviews-card-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

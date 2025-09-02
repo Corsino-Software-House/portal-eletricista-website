@@ -11,6 +11,8 @@ type CreateRequestData = {
   cidade: string;
   bairro: string;
   especialidade: string;
+  contato: string;
+  tempo: string;
 };
 
 export interface Request {
@@ -22,6 +24,7 @@ export interface Request {
   especialidade: string;
   clienteId: number;
   concluido: boolean;
+  status: "ESPERA" | "ABERTO" | "CONCLUIDO";
 }
 
 export const criarRequest = async (data: CreateRequestData) => {
@@ -47,6 +50,7 @@ export const buscarTodasRequests = async (): Promise<Request[]> => {
 export const buscarRequestsPorCliente = async (clienteId: number): Promise<Request[]> => {
   try {
     const response = await api.get(`/requests/cliente/${clienteId}`);
+    console.log('Response data:', response.data);
     return response.data;
   } catch (error: any) {
     console.error('Erro ao buscar requests do cliente:', error.response?.data || error.message);
@@ -68,6 +72,16 @@ export const buscarRequestPorId = async (id: number): Promise<Request> => {
 export const concluirRequest = async (id: number) => {
   try {
     const response = await api.patch(`/requests/${id}/concluir`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Erro ao concluir request:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export const aprovarRequest = async (id: number) => {
+  try {
+    const response = await api.patch(`/requests/${id}/aprovar`);
     return response.data;
   } catch (error: any) {
     console.error('Erro ao concluir request:', error.response?.data || error.message);

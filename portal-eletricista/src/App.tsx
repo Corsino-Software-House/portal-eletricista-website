@@ -43,6 +43,7 @@ import ForgotPasswordAdmin from "./pages/forgotPasswordAdmin/forgotPasswordAdmin
 import OtpAdmin from "./pages/forgotPasswordAdmin/Otp/otpAdmin";
 import AlterarSenhaAdmin from "./pages/forgotPasswordAdmin/alterarSenha/alterarSenhaAdmin";
 import MeusProjetos from "./pages/MeusProjetos/MeusProjetos";
+import ListarReviews from "./pages/listagemReviews/ListagemReviews";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -85,6 +86,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute tipo="admin">
         <ListagemCliente />
+      </PrivateRoute>
+    ),
+  },
+{
+    path: "/listagem-reviews",
+    element: (
+      <PrivateRoute tipo="admin">
+        <ListarReviews />
       </PrivateRoute>
     ),
   },
