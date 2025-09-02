@@ -1,6 +1,6 @@
 // ListagemProjetos.tsx
 import React, { useEffect, useState } from "react";
-import { Trash2, CheckCircle } from "lucide-react"; // Ícone para aprovar
+import { Trash2 } from "lucide-react"; // Ícone para aprovar
 import "./Listagem.css";
 import {
   buscarTodasRequests,
