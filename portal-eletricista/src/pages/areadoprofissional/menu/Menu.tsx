@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Calendar,
-  Search,
-  Star,
-  User,
-  DollarSign,
-} from "lucide-react";
+import { Calendar, Search, Star, User, DollarSign } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./styles.css";
@@ -16,9 +10,8 @@ import { CreditsoProfissional } from "../../../services/subscription.service";
 
 const menuItems = [
   {
-    title: "Projetos Candidatos",
-    description:
-      "Visualize todos os serviços que você já se candidatou.",
+    title: "Projetos aos quais me candidatei",
+    description: "Visualize todos os serviços que você já se candidatou.",
     icon: <Calendar size={32} />,
     path: "/areadoprofissional/chamados-agendados",
   },
@@ -75,11 +68,10 @@ const Dashboard = () => {
       <div className="dashboard-container">
         <h2 className="menu-title">Menu</h2>
 
-        {creditos !== null && (
-          <div className="creditos-box">
-            <DollarSign size={20} /> Créditos disponíveis: <strong>{creditos}</strong>
-          </div>
-        )}
+        <div className="creditos-box">
+          <DollarSign size={20} /> Créditos disponíveis:{" "}
+          <strong>{creditos ?? 0}</strong>
+        </div>
 
         <div className="menu-grid">
           {menuItems.map((item, idx) => (
