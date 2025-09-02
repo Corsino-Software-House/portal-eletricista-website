@@ -42,6 +42,7 @@ import AlterarSenhaProfissional from "./pages/forgotPasswordProfissional/alterar
 import ForgotPasswordAdmin from "./pages/forgotPasswordAdmin/forgotPasswordAdmin";
 import OtpAdmin from "./pages/forgotPasswordAdmin/Otp/otpAdmin";
 import AlterarSenhaAdmin from "./pages/forgotPasswordAdmin/alterarSenha/alterarSenhaAdmin";
+import MeusProjetos from "./pages/MeusProjetos/MeusProjetos";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -149,6 +150,15 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute tipo="cliente">
         <MenuCliente />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: "/projetos/:id",
+    element: (
+      <PrivateRoute tipo="cliente">
+        <MeusProjetos/>
       </PrivateRoute>
     ),
   },

@@ -7,11 +7,21 @@
 
 .menu-title,
 .historico-title {
-  text-align: center;
   font-size: 2rem;
-  margin-bottom: 2rem;
   font-weight: 700;
   color: #1f2937;
+}
+.ver-todos-link {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  text-decoration: none;
+  align-self: stretch;
+}
+.historico-header {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
 }
 
 .menu-grid {

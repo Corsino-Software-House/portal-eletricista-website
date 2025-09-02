@@ -132,7 +132,12 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <h2 className="historico-title">Historico de Projetos</h2>
+        <div className="historico-header">
+          <h2 className="historico-title">Historico de Projetos</h2>
+          <Link to={`/projetos/${clienteId}`} className="ver-todos-link">
+            Ver Todos
+          </Link>
+        </div>
         <div className="carousel-wrapper">
           <Slider {...settings} className="historico-carousel">
             {historicoChamados.length > 0 ? (
