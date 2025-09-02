@@ -206,6 +206,7 @@ const ProfileForm: React.FC = () => {
                 placeholder="Digite seu telefone..."
                 international
                 countryCallingCodeEditable={false}
+                
               />
             )}
           />
