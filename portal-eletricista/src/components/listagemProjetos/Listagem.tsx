@@ -22,6 +22,7 @@ const ListagemProjetos: React.FC = () => {
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [loading, setLoading] = useState(false);
   const [creditosInput, setCreditosInput] = useState<{ [key: string]: number }>({});
+  const [searchTerm, setSearchTerm] = useState(""); // <-- estado para pesquisa
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -110,6 +111,13 @@ const ListagemProjetos: React.FC = () => {
     }
   };
 
+  // 🔎 Filtro de projetos pelo termo digitado
+  const projetosFiltrados = projetos.filter((projeto) =>
+    projeto.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    projeto.descricao.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    projeto.especialidade.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="dashboard-layout">
       <aside className="sidebar">
@@ -129,14 +137,31 @@ const ListagemProjetos: React.FC = () => {
           <h2>Listagem de Projetos</h2>
         </div>
 
+        {/* Campo de pesquisa */}
+        <div style={{ marginBottom: "20px" }}>
+          <input
+            type="text"
+            placeholder="Pesquisar por título, descrição ou especialidade..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
+        </div>
+
         <div className="projetos-list-container">
           {loading ? (
             <p>Carregando projetos...</p>
-          ) : projetos.length === 0 ? (
+          ) : projetosFiltrados.length === 0 ? (
             <p className="no-projects-message">Nenhum projeto encontrado.</p>
           ) : (
             <div className="projetos-grid">
-              {projetos.map(projeto => (
+              {projetosFiltrados.map(projeto => (
                 <div key={projeto.id} className="projeto-card">
                   <h3>{projeto.titulo}</h3>
                   <p className="projeto-descricao">{projeto.descricao}</p>
