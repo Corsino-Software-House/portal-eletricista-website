@@ -1,15 +1,24 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import "./styles.css";
+import { alterarSenhaClientePorEmail } from "../../../services/alterarSenha.service";
+import Swal from "sweetalert2";
 
 interface FormValues {
   novaSenha: string;
   confirmarSenha: string;
 }
 
+interface LocationState {
+  email: string;
+}
+
 export default function AlterarSenhaCliente() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const email = state?.email; // email passado da tela OTP
 
   const {
     register,
@@ -18,10 +27,31 @@ export default function AlterarSenhaCliente() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Nova senha:", data.novaSenha);
-    alert("Senha alterada com sucesso!");
-    navigate("/areadocliente");
+  const onSubmit = async (data: FormValues) => {
+    if (!email) {
+      alert("Email não encontrado. Volte e tente novamente.");
+      return;
+    }
+
+    try {
+      await alterarSenhaClientePorEmail(email, data.novaSenha);
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Sua senha foi alterada com sucesso!",
+        icon: "success",
+      });
+      navigate("/areadocliente");
+    } catch (err: any) {
+      console.error(
+        "Erro ao alterar senha:",
+        err.response?.data || err.message
+      );
+      Swal.fire({
+        title: "Erro!",
+        text: "Erro em alterar senha!",
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -70,7 +100,9 @@ export default function AlterarSenhaCliente() {
             className="forgot-input"
           />
           {errors.confirmarSenha && (
-            <span className="forgot-error">{errors.confirmarSenha.message}</span>
+            <span className="forgot-error">
+              {errors.confirmarSenha.message}
+            </span>
           )}
 
           {/* Botão de Alterar */}

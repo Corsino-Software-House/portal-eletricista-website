@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import "./styles.css";
+import { sendOtp } from "../../services/email.service"; // importa a service
 
 interface FormValues {
   email: string;
@@ -16,9 +17,16 @@ export default function ForgotPasswordCliente() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Email preenchido:", data.email);
-    navigate("/cliente/otp");
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const res = await sendOtp(data.email);
+      console.log("OTP enviado:", res.message);
+      // redireciona para a tela de OTP, passando o email junto
+      navigate("/cliente/otp", { state: { email: data.email } });
+    } catch (err: any) {
+      console.error("Erro ao enviar OTP:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Erro ao enviar OTP");
+    }
   };
 
   return (
@@ -58,7 +66,7 @@ export default function ForgotPasswordCliente() {
             disabled={isSubmitting}
             className="forgot-button"
           >
-            {isSubmitting ? "Validando..." : "Recuperar Senha"}
+            {isSubmitting ? "Enviando..." : "Recuperar Senha"}
           </button>
         </form>
       </div>

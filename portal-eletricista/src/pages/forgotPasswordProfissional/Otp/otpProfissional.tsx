@@ -1,23 +1,52 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import { ArrowLeft } from "lucide-react";
 import "./styles.css";
+import { validateOtp } from "../../../services/email.service"; // importa a service
+
+interface LocationState {
+  email: string;
+}
 
 export default function OtpProfissional() {
   const navigate = useNavigate();
-  const [otp, setOtp] = useState("");
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const email = state?.email;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email) {
+      alert("Email não encontrado. Volte e tente novamente.");
+      return;
+    }
 
     if (otp.length < 4) {
       alert("Preencha todos os dígitos do código");
       return;
     }
 
-    console.log("Código OTP digitado:", otp);
-    navigate("/profissional/alterar-senha");
+    try {
+      setLoading(true);
+      const res = await validateOtp(email, otp);
+
+      if (res.message === true) {
+        // OTP válido → segue para alteração de senha
+        navigate("/profissional/alterar-senha", { state: { email } });
+      } else {
+        alert("Código inválido ou expirado");
+      }
+    } catch (err: any) {
+      console.error("Erro ao validar OTP:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Erro ao validar OTP");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,7 +55,7 @@ export default function OtpProfissional() {
       <button
         type="button"
         className="forgot-back-btn"
-        onClick={() => navigate("/cliente/esqueci-senha")}
+        onClick={() => navigate("/profissional/esqueci-senha")}
       >
         <ArrowLeft size={20} /> Voltar
       </button>
@@ -50,8 +79,8 @@ export default function OtpProfissional() {
             renderInput={(props) => <input {...props} />}
           />
 
-          <button type="submit" className="forgot-button">
-            Confirmar Código
+          <button type="submit" className="forgot-button" disabled={loading}>
+            {loading ? "Validando..." : "Confirmar Código"}
           </button>
         </form>
       </div>
