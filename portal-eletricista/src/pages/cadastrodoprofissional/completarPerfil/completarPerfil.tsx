@@ -1,5 +1,6 @@
 import React, { useState, type ChangeEvent } from "react";
 import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Header from "../../../components/header/Header";
@@ -13,10 +14,10 @@ import "./style.css";
 type FormData = {
   bio: string;
   telefone: string;
-  especialidade: string;
-  fotoPerfil: FileList;    // campo único para foto perfil
-  ccFrente: FileList;      // frente documento
-  ccVerso: FileList;       // verso documento
+  especialidades: string[];
+  fotoPerfil: FileList; // campo único para foto perfil
+  ccFrente: FileList; // frente documento
+  ccVerso: FileList; // verso documento
 };
 
 const ProfileForm: React.FC = () => {
@@ -29,9 +30,161 @@ const ProfileForm: React.FC = () => {
     defaultValues: {
       bio: "",
       telefone: "",
-      especialidade: "",
+      especialidades: [],
     },
   });
+  const opcoesEspecialidades = [
+    {
+      label: "Elétrica",
+      options: [
+        {
+          value: "Instalação elétrica completa",
+          label: "Instalação elétrica completa (obra nova ou remodelação)",
+        },
+        {
+          value: "Substituição de quadros elétricos",
+          label: "Substituição de quadros elétricos",
+        },
+        {
+          value: "Instalação de disjuntores e diferencial",
+          label: "Instalação de disjuntores e diferencial",
+        },
+        {
+          value: "Passagem e substituição de cabos",
+          label: "Passagem e substituição de cabos",
+        },
+        { value: "Tomadas e interruptores", label: "Tomadas e interruptores" },
+        {
+          value: "Iluminação interior e exterior",
+          label: "Iluminação interior e exterior",
+        },
+        {
+          value: "Ventoinhas de teto e exaustores",
+          label: "Ventoinhas de teto e exaustores",
+        },
+        {
+          value: "Manutenção preventiva de sistemas elétricos",
+          label: "Manutenção preventiva de sistemas elétricos",
+        },
+        { value: "Certificação elétrica", label: "Certificação elétrica" },
+        {
+          value: "Inspeções técnicas e diagnósticos de falha",
+          label: "Inspeções técnicas e diagnósticos de falha",
+        },
+      ],
+    },
+    {
+      label: "Domótica / Smart Home",
+      options: [
+        {
+          value: "Instalação e configuração de assistentes virtuais",
+          label: "Instalação e configuração de assistentes virtuais",
+        },
+        {
+          value: "Tomadas e interruptores inteligentes",
+          label: "Tomadas e interruptores inteligentes",
+        },
+        {
+          value: "Automatização de iluminação e persianas",
+          label: "Automatização de iluminação e persianas",
+        },
+        {
+          value: "Instalação de câmeras de vigilância (CCTV)",
+          label: "Instalação de câmeras de vigilância (CCTV)",
+        },
+        {
+          value: "Instalação de sensores de segurança",
+          label: "Instalação de sensores de segurança",
+        },
+        { value: "Controle remoto via app", label: "Controle remoto via app" },
+        {
+          value: "Integração de sistemas com domótica",
+          label: "Integração de sistemas com domótica",
+        },
+        {
+          value: "Consultoria e otimização com smart meter",
+          label: "Consultoria e otimização com smart meter",
+        },
+      ],
+    },
+    {
+      label: "Hidráulica / Canalização",
+      options: [
+        { value: "Reparação de fugas de água", label: "Reparação de fugas de água" },
+        { value: "Desentupimentos", label: "Desentupimentos" },
+        {
+          value: "Instalação de torneiras e chuveiros",
+          label: "Instalação de torneiras e chuveiros",
+        },
+        {
+          value: "Substituição de loiças sanitárias",
+          label: "Substituição de loiças sanitárias",
+        },
+        {
+          value: "Instalação de máquinas de lavar",
+          label: "Instalação de máquinas de lavar",
+        },
+        {
+          value: "Substituição de autoclismos",
+          label: "Reparação e substituição de autoclismos",
+        },
+        {
+          value: "Montagem de sistemas de filtragem de água",
+          label: "Montagem de sistemas de filtragem de água",
+        },
+        {
+          value: "Canalizações para obras",
+          label: "Canalizações para obras",
+        },
+        {
+          value: "Verificação e substituição de esgotos",
+          label: "Verificação e substituição de esgotos",
+        },
+        {
+          value: "Ensaios hidráulicos",
+          label: "Ensaios hidráulicos",
+        },
+      ],
+    },
+    {
+      label: "Serviços Gerais e Emergência",
+      options: [
+        {
+          value: "Reparos simples elétricos e hidráulicos",
+          label: "Reparos simples elétricos e hidráulicos",
+        },
+        {
+          value: "Manutenção periódica",
+          label: "Manutenção periódica",
+        },
+        {
+          value: "Pequenas remodelações",
+          label: "Pequenas remodelações",
+        },
+        {
+          value: "Instalação de suportes e luminárias",
+          label: "Instalação de suportes e luminárias",
+        },
+        {
+          value: "Falta de energia elétrica",
+          label: "Falta de energia elétrica",
+        },
+        {
+          value: "Disjuntor queimado / quadro disparando",
+          label: "Disjuntor queimado / quadro disparando",
+        },
+        {
+          value: "Fugas de água ou risco de inundação",
+          label: "Fugas de água ou risco de inundação",
+        },
+        { value: "Entupimentos graves", label: "Entupimentos graves" },
+        {
+          value: "Problemas com aquecedores",
+          label: "Problemas com aquecedores",
+        },
+      ],
+    },
+  ];
 
   const [preview, setPreview] = useState<string | null>(null);
   const [previewFrente, setPreviewFrente] = useState<string | null>(null);
@@ -68,7 +221,9 @@ const ProfileForm: React.FC = () => {
     formData.append("id", String(id));
     formData.append("bio", data.bio);
     formData.append("telefone", data.telefone);
-    formData.append("especialidade", data.especialidade);
+    data.especialidades.forEach((esp) => {
+      formData.append("especialidades[]", esp);
+    });
 
     // Foto de perfil (campo único)
     formData.append("fotoPerfil", data.fotoPerfil[0]);
@@ -78,8 +233,8 @@ const ProfileForm: React.FC = () => {
     formData.append("documentos", data.ccVerso[0]);
 
     for (const pair of formData.entries()) {
-  console.log(pair[0], pair[1]);
-}
+      console.log(pair[0], pair[1]);
+    }
     try {
       setLoading(true);
       const resposta = await completarPerfil(formData);
@@ -109,7 +264,7 @@ const ProfileForm: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100vh",
+        height: "200vh",
       }}
     >
       <Header />
@@ -142,7 +297,11 @@ const ProfileForm: React.FC = () => {
         <div className="image-upload">
           <label>Cartão de Cidadão - Frente</label>
           {previewFrente ? (
-            <img src={previewFrente} alt="CC Frente" className="preview-cartao" />
+            <img
+              src={previewFrente}
+              alt="CC Frente"
+              className="preview-cartao"
+            />
           ) : (
             <div className="placeholder-cartao">Prévia</div>
           )}
@@ -185,7 +344,11 @@ const ProfileForm: React.FC = () => {
         {/* BIO */}
         <div className="form-group">
           <label htmlFor="bio">Bio:</label>
-          <textarea id="bio" placeholder="Digite algo sobre você..." {...register("bio")} />
+          <textarea
+            id="bio"
+            placeholder="Digite algo sobre você..."
+            {...register("bio")}
+          />
         </div>
 
         {/* TELEFONE */}
@@ -196,7 +359,8 @@ const ProfileForm: React.FC = () => {
             control={control}
             rules={{
               required: "Telefone é obrigatório",
-              validate: (value) => (value && value.length >= 10) || "Telefone inválido",
+              validate: (value) =>
+                (value && value.length >= 10) || "Telefone inválido",
             }}
             render={({ field }) => (
               <PhoneInput
@@ -206,139 +370,40 @@ const ProfileForm: React.FC = () => {
                 placeholder="Digite seu telefone..."
                 international
                 countryCallingCodeEditable={false}
-                
               />
             )}
           />
-          {errors.telefone && <p className="error">{errors.telefone.message?.toString()}</p>}
+          {errors.telefone && (
+            <p className="error">{errors.telefone.message?.toString()}</p>
+          )}
         </div>
 
         {/* ESPECIALIDADE */}
         <div className="form-group">
           <label htmlFor="especialidade">Especialidade:</label>
-          <select
-            id="especialidade"
-            {...register("especialidade", { required: "Selecione uma especialidade" })}
-          >
-           <option value="">Selecione uma especialidade</option>
-            <optgroup label="Elétrica">
-              <option value="Instalação elétrica completa (obra nova ou remodelação)">
-                Instalação elétrica completa (obra nova ou remodelação)
-              </option>
-              <option value="Substituição de quadros elétricos">
-                Substituição de quadros elétricos
-              </option>
-              <option value="Instalação de disjuntores e diferencial">
-                Instalação de disjuntores e diferencial
-              </option>
-              <option value="Passagem e substituição de cabos">
-                Passagem e substituição de cabos
-              </option>
-              <option value="Tomadas e interruptores">
-                Tomadas e interruptores
-              </option>
-              <option value="Iluminação interior e exterior">
-                Iluminação interior e exterior
-              </option>
-              <option value="Ventoinhas de teto e exaustores">
-                Ventoinhas de teto e exaustores
-              </option>
-              <option value="Manutenção preventiva de sistemas elétricos">
-                Manutenção preventiva de sistemas elétricos
-              </option>
-              <option value="Certificação elétrica">
-                Certificação elétrica
-              </option>
-              <option value="Inspeções técnicas e diagnósticos de falha">
-                Inspeções técnicas e diagnósticos de falha
-              </option>
-            </optgroup>
-            <optgroup label="Domótica / Smart Home">
-              <option value="Instalação e configuração de assistentes virtuais">
-                Instalação de assistentes virtuais
-              </option>
-              <option value="Tomadas e interruptores inteligentes">
-                Tomadas e interruptores inteligentes
-              </option>
-              <option value="Automatização de iluminação e persianas">
-                Automatização de iluminação e persianas
-              </option>
-              <option value="Instalação de câmeras de vigilância (CCTV)">
-                Instalação de câmeras de vigilância (CCTV)
-              </option>
-              <option value="Instalação de sensores de segurança">
-                Instalação de sensores de segurança
-              </option>
-              <option value="Controle remoto via app">
-                Controle remoto via app
-              </option>
-              <option value="Integração de sistemas com domótica">
-                Integração com domótica
-              </option>
-              <option value="Consultoria e otimização com smart meter">
-                Consultoria com smart meter
-              </option>
-            </optgroup>
-            <optgroup label="Hidráulica / Canalização">
-              <option value="Reparação de fugas de água">
-                Reparação de fugas de água
-              </option>
-              <option value="Desentupimentos">Desentupimentos</option>
-              <option value="Instalação de torneiras e chuveiros">
-                Instalação de torneiras e chuveiros
-              </option>
-              <option value="Substituição de loiças sanitárias">
-                Substituição de loiças sanitárias
-              </option>
-              <option value="Instalação de máquinas de lavar">
-                Instalação de máquinas de lavar
-              </option>
-              <option value="Reparação e substituição de autoclismos">
-                Substituição de autoclismos
-              </option>
-              <option value="Montagem de sistemas de filtragem de água">
-                Sistemas de filtragem de água
-              </option>
-              <option value="Canalizações completas para obras">
-                Canalizações para obras
-              </option>
-              <option value="Verificação e substituição de esgotos">
-                Verificação e substituição de esgotos
-              </option>
-              <option value="Certificações e ensaios hidráulicos">
-                Ensaios hidráulicos
-              </option>
-            </optgroup>
-            <optgroup label="Serviços Gerais e Emergência">
-              <option value="Reparos simples elétricos e hidráulicos">
-                Reparos simples elétricos e hidráulicos
-              </option>
-              <option value="Manutenção periódica de sistemas">
-                Manutenção periódica
-              </option>
-              <option value="Pequenas remodelações de cozinha e WC">
-                Pequenas remodelações
-              </option>
-              <option value="Instalação de suportes e luminárias">
-                Instalação de suportes e luminárias
-              </option>
-              <option value="Falta de energia elétrica">
-                Falta de energia elétrica
-              </option>
-              <option value="Disjuntor queimado / quadro disparando">
-                Disjuntor queimado / quadro disparando
-              </option>
-              <option value="Fugas de água ou risco de inundação">
-                Fugas de água ou risco de inundação
-              </option>
-              <option value="Entupimentos graves">Entupimentos graves</option>
-              <option value="Problemas com aquecedores">
-                Problemas com aquecedores
-              </option>
-            </optgroup>
-          </select>
-          {errors.especialidade && (
-            <p className="error">{errors.especialidade.message?.toString()}</p>
+          <Controller
+            name="especialidades"
+            control={control}
+            rules={{ required: "Selecione ao menos uma especialidade" }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={opcoesEspecialidades}
+                isMulti
+                closeMenuOnSelect={false}
+                placeholder="Selecione suas especialidades..."
+                onChange={(selectedOptions) => {
+                  // converte para array de strings
+                  field.onChange(selectedOptions.map((opt) => opt.value));
+                }}
+                value={opcoesEspecialidades
+                  .flatMap((grupo) => grupo.options)
+                  .filter((opt) => field.value?.includes(opt.value))}
+              />
+            )}
+          />
+          {errors.especialidades && (
+            <p className="error">{errors.especialidades.message?.toString()}</p>
           )}
         </div>
 

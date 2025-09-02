@@ -8,7 +8,7 @@ interface Profissional {
   nome: string;
   email: string;
   telefone: string;
-  especialidade: string;
+  especialidades: string[];
   fotoFrenteUrl?: string | null;
   fotoVersoUrl?: string | null;
 }
@@ -97,7 +97,7 @@ const ListagemProfissionais: React.FC = () => {
                     <strong>Telefone:</strong> {profissional.telefone}
                   </p>
                   <p className="projeto-especialidade">
-                    <strong>Especialidade:</strong> {profissional.especialidade}
+                    <strong>Especialidades:</strong> {profissional.especialidades.join(', ')}
                   </p>
                   <button onClick={() => abrirModal(profissional)}>Ver Documentos</button>
                 </div>

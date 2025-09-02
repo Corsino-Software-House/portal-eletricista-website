@@ -6,7 +6,7 @@ import { verProfissionais } from "../../services/cadastroProfissional.service";
 type Professional = {
   id: number;
   nome: string;
-  especialidade: string;
+  especialidades: string[];
   cidade: string;
 };
 
@@ -25,7 +25,7 @@ const ProfessionalSearch: React.FC = () => {
   }, []);
 
   const filtrados = profissionais.filter((prof) =>
-    `${prof.nome} ${prof.especialidade} ${prof.cidade}`
+    `${prof.nome} ${prof.especialidades} ${prof.cidade}`
       .toLowerCase()
       .includes(busca.toLowerCase())
   );
@@ -55,7 +55,7 @@ const ProfessionalSearch: React.FC = () => {
             itensPagina.map((prof) => (
               <li key={prof.id} className="professional-card">
                 <h3>{prof.nome}</h3>
-                <p>Especialidade: {prof.especialidade}</p>
+                <p>Especialidades: {prof.especialidades.join(", ")}</p>
                 <p>Cidade: {prof.cidade}</p>
                 <button onClick={() => navigate(`/profissionais/${prof.id}`)}>
                   Ver
