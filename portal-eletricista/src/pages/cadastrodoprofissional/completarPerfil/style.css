@@ -84,3 +84,55 @@ button[type="submit"] {
   align-items: center;
   height: 100px;
 }
+/* Container principal do campo */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  transition: border 0.2s ease-in-out;
+}
+
+.PhoneInput:focus-within {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Bandeira */
+.PhoneInputCountryIcon {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PhoneInputCountryIcon img {
+  width: 24px !important;
+  height: 18px !important;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* Dropdown da bandeira */
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Input do número */
+.PhoneInputInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
