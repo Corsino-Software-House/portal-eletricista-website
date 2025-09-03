@@ -19,10 +19,19 @@ const ProfessionalSearch: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    verProfissionais()
-      .then((data) => setProfissionais(data))
-      .catch((err) => console.error("Erro ao buscar profissionais:", err));
-  }, []);
+  verProfissionais()
+    .then((data) =>
+      setProfissionais(
+        data.map((prof: any) => ({
+          ...prof,
+          especialidades: Array.isArray(prof.especialidades)
+            ? prof.especialidades
+            : [], // garante sempre array
+        }))
+      )
+    )
+    .catch((err) => console.error("Erro ao buscar profissionais:", err));
+}, []);
 
   const filtrados = profissionais.filter((prof) =>
     `${prof.nome} ${prof.especialidades} ${prof.cidade}`
@@ -55,7 +64,11 @@ const ProfessionalSearch: React.FC = () => {
             itensPagina.map((prof) => (
               <li key={prof.id} className="professional-card">
                 <h3>{prof.nome}</h3>
-                <p>Especialidades: {prof.especialidades.join(", ")}</p>
+                <p>
+  Especialidades: {Array.isArray(prof.especialidades) && prof.especialidades.length > 0
+    ? prof.especialidades.join(", ")
+    : "Não informado"}
+</p>
                 <p>Cidade: {prof.cidade}</p>
                 <button onClick={() => navigate(`/profissionais/${prof.id}`)}>
                   Ver
