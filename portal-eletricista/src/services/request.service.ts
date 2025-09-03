@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 
 const api = axios.create({
@@ -40,6 +41,16 @@ export const criarRequest = async (data: CreateRequestData) => {
 export const buscarTodasRequests = async (): Promise<Request[]> => {
   try {
     const response = await api.get('/requests/all');
+    return response.data;
+  } catch (error: any) {
+    console.error('Erro ao buscar todas as requests:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export const buscarRequestsDisponiveis = async (): Promise<Request[]> => {
+  try {
+    const response = await api.get('/requests/disponiveis');
     return response.data;
   } catch (error: any) {
     console.error('Erro ao buscar todas as requests:', error.response?.data || error.message);

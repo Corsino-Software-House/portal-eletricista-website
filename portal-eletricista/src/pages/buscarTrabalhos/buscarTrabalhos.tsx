@@ -3,7 +3,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { buscarTodasRequests } from "../../services/request.service";
+import { buscarRequestsDisponiveis } from "../../services/request.service";
 import { ArrowLeft } from "lucide-react";
 
 type Request = {
@@ -27,7 +27,7 @@ export default function BuscarTrabalhos() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    buscarTodasRequests()
+    buscarRequestsDisponiveis()
       .then((res) => setTrabalhos(res))
       .catch((err) => console.error("Erro ao buscar trabalhos:", err))
       .finally(() => setLoading(false));

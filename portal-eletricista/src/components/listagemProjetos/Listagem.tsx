@@ -28,8 +28,9 @@ const ListagemProjetos: React.FC = () => {
   );
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const [statusFilter, setStatusFilter] = useState<"TODOS" | "ESPERA" | "ABERTO" | "CONCLUIDO">("TODOS");
-
+  const [statusFilter, setStatusFilter] = useState<
+    "TODOS" | "ESPERA" | "ABERTO" | "CONCLUIDO"
+  >("TODOS");
 
   useEffect(() => {
     const carregarProjetos = async () => {
@@ -42,7 +43,7 @@ const ListagemProjetos: React.FC = () => {
           titulo: req.titulo,
           descricao: req.descricao,
           especialidade: req.especialidade,
-          creditosAplicados: req.creditosAplicados || 0,
+          creditosAplicados: req.creditos || 0,
           status: req.status, // <-- adicionando status
         }));
 
@@ -97,38 +98,41 @@ const ListagemProjetos: React.FC = () => {
     });
   };
 
-  const handleAplicarCreditos = async (id: string) => {
-    const creditosParaAplicar = creditosInput[id] || 0;
+const handleAplicarCreditos = async (id: string) => {
+  const creditosParaAplicar = creditosInput[id] || 0;
 
-    if (creditosParaAplicar <= 0) {
-      Swal.fire("Atenção", "Insira um valor válido de créditos.", "warning");
-      return;
-    }
+  if (creditosParaAplicar <= 0) {
+    Swal.fire("Atenção", "Insira um valor válido de créditos.", "warning");
+    return;
+  }
 
-    try {
-      await aplicarCreditos(id, creditosParaAplicar);
-      setProjetos((prev) =>
-        prev.map((projeto) =>
-          projeto.id === id
-            ? {
-                ...projeto,
-                creditosAplicados:
-                  (projeto.creditosAplicados || 0) + creditosParaAplicar,
-              }
-            : projeto
-        )
-      );
-      setCreditosInput({ ...creditosInput, [id]: 0 });
-      Swal.fire(
-        "Sucesso",
-        `Créditos aplicados: ${creditosParaAplicar}`,
-        "success"
-      );
-    } catch (error) {
-      console.error("Erro ao aplicar créditos:", error);
-      Swal.fire("Erro", "Erro ao aplicar créditos.", "error");
-    }
-  };
+  try {
+    const atualizado = await aplicarCreditos(id, creditosParaAplicar);
+
+    setProjetos((prev) =>
+      prev.map((projeto) =>
+        projeto.id === id
+          ? {
+              ...projeto,
+              creditosAplicados: atualizado.creditos, // valor correto
+              status: atualizado.status, // pega do backend
+            }
+          : projeto
+      )
+    );
+
+    setCreditosInput({ ...creditosInput, [id]: 0 });
+
+    Swal.fire(
+      "Sucesso",
+      `Créditos aplicados: ${creditosParaAplicar}`,
+      "success"
+    );
+  } catch (error) {
+    console.error("Erro ao aplicar créditos:", error);
+    Swal.fire("Erro", "Erro ao aplicar créditos.", "error");
+  }
+};
 
   const handleAprovarProjeto = async (id: string) => {
     try {
@@ -147,16 +151,16 @@ const ListagemProjetos: React.FC = () => {
 
   // 🔎 Filtro de projetos pelo termo digitado
   const projetosFiltrados = projetos.filter((projeto) => {
-  const matchesSearch =
-    projeto.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    projeto.descricao.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    projeto.especialidade.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      projeto.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      projeto.descricao.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      projeto.especialidade.toLowerCase().includes(searchTerm.toLowerCase());
 
-  const matchesStatus =
-    statusFilter === "TODOS" || projeto.status === statusFilter;
+    const matchesStatus =
+      statusFilter === "TODOS" || projeto.status === statusFilter;
 
-  return matchesSearch && matchesStatus;
-});
+    return matchesSearch && matchesStatus;
+  });
   return (
     <div className="dashboard-layout">
       <aside className="sidebar">
@@ -182,7 +186,11 @@ const ListagemProjetos: React.FC = () => {
               <a href="/listagem-projetos">Projetos</a>
             </strong>
           </li>
-          <li><strong><a href="/listagem-reviews">Reviews</a></strong></li>
+          <li>
+            <strong>
+              <a href="/listagem-reviews">Reviews</a>
+            </strong>
+          </li>
         </ul>
         <button onClick={handleLogout} className="logout-button">
           Sair
@@ -193,41 +201,39 @@ const ListagemProjetos: React.FC = () => {
         <div className="dashboard-header">
           <h2>Listagem de Projetos</h2>
         </div>
-        
 
         {/* Campo de pesquisa */}
-       <div style={{ marginBottom: "20px", display: "flex", gap: "15px" }}>
-  <input
-    type="text"
-    placeholder="Pesquisar por título, descrição ou especialidade..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    style={{
-      flex: 1,
-      padding: "10px",
-      fontSize: "16px",
-      borderRadius: "8px",
-      border: "1px solid #ccc",
-    }}
-  />
+        <div style={{ marginBottom: "20px", display: "flex", gap: "15px" }}>
+          <input
+            type="text"
+            placeholder="Pesquisar por título, descrição ou especialidade..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              flex: 1,
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
 
-  <select
-    value={statusFilter}
-    onChange={(e) => setStatusFilter(e.target.value as any)}
-    style={{
-      padding: "10px",
-      fontSize: "16px",
-      borderRadius: "8px",
-      border: "1px solid #ccc",
-    }}
-  >
-    <option value="TODOS">Todos</option>
-    <option value="ESPERA">Espera</option>
-    <option value="ABERTO">Aberto</option>
-    <option value="CONCLUIDO">Concluído</option>
-  </select>
-</div>
-
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value as any)}
+            style={{
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          >
+            <option value="TODOS">Todos</option>
+            <option value="ESPERA">Espera</option>
+            <option value="ABERTO">Aberto</option>
+            <option value="CONCLUIDO">Concluído</option>
+          </select>
+        </div>
 
         <div className="projetos-list-container">
           {loading ? (
