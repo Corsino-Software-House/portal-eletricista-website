@@ -24,9 +24,6 @@ export default function DetalhesDoChamado() {
       try {
         const data = await buscarRequestPorId(subscriptionId);
         setTrabalho(data);
-
-        // Se o backend já trouxer info de candidatura, pode marcar aqui:
-        // setCandidatado(data?.candidatado ?? false);
       } catch (err) {
         console.error("Erro ao buscar chamado:", err);
       } finally {
@@ -49,7 +46,7 @@ export default function DetalhesDoChamado() {
         quantidade: trabalho.creditos,
       });
 
-      setCandidatado(true); // libera acesso aos contatos
+      setCandidatado(true);
 
       Swal.fire({
         title: "Candidatura enviada com sucesso!",
@@ -66,6 +63,17 @@ export default function DetalhesDoChamado() {
       });
     }
   };
+
+  function formatarData(dataString: string) {
+    const data = new Date(dataString);
+    return data.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
 
   if (carregando) {
     return <div className="loading">Carregando...</div>;
@@ -118,22 +126,25 @@ export default function DetalhesDoChamado() {
             </div>
             <div>
               <strong>Criado em:</strong>
-              <p>{trabalho.criadoEm}</p>
+              <p>{formatarData(trabalho.criadoEm)}</p>
             </div>
             <div>
               <strong>Publicado por:</strong>
               <p>{trabalho.cliente.nome}</p>
             </div>
 
-            {candidatado && (
+            {candidatado ? (
               <>
                 <div>
-                  <strong>Telefone:</strong>
-                  <p>{trabalho.cliente.telefone}</p>
+                  <strong>Contato:</strong>
+                  <p>{trabalho.contato}</p>
                 </div>
+              </>
+            ) : (
+              <>
                 <div>
-                  <strong>E-mail:</strong>
-                  <p>{trabalho.cliente.email}</p>
+                  <strong>Contato:</strong>
+                  <p>Disponível após candidatura</p>
                 </div>
               </>
             )}
