@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 const api = axios.create({
@@ -26,6 +25,14 @@ export interface Request {
   clienteId: number;
   concluido: boolean;
   status: "ESPERA" | "ABERTO" | "CONCLUIDO";
+}
+
+export interface Profissional {
+  id: number;
+  nome: string;
+  especialidade: string;
+  telefone?: string;
+  fotoUrl?: string;
 }
 
 export const criarRequest = async (data: CreateRequestData) => {
@@ -80,6 +87,16 @@ export const buscarRequestPorId = async (id: number): Promise<Request> => {
   }
 };
 
+export const buscarProfissionaisPorRequest = async (id: number): Promise<Profissional[]> => {
+  try {
+    const response = await api.get(`/requests/${id}/profissionais`);
+    return response.data;
+  } catch (error: any) {
+    console.error('Erro ao buscar profissionais do request:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
 export const concluirRequest = async (id: number) => {
   try {
     const response = await api.patch(`/requests/${id}/concluir`);
@@ -108,10 +125,9 @@ export const deletarRequest = async (id: number) => {
     console.error('Erro ao deletar request:', error.response?.data || error.message);
     throw error;
   }
-
 };
 
- export const aplicarCreditos = async (id: string, creditos: number) => {
+export const aplicarCreditos = async (id: string, creditos: number) => {
   try {
     const response = await api.put(`requests/atualiza-creditos/${id}`, {
       creditos,
