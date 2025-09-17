@@ -139,11 +139,19 @@ export default function DetalhesDoChamado() {
                   <strong>Contato:</strong>
                   <p>{trabalho.contato}</p>
                 </div>
+                <div>
+                  <strong>Email:</strong>
+                  <p>{trabalho.cliente.email}</p>
+                </div>
               </>
             ) : (
               <>
                 <div>
                   <strong>Contato:</strong>
+                  <p>Disponível após candidatura</p>
+                </div>
+                <div>
+                  <strong>Email:</strong>
                   <p>Disponível após candidatura</p>
                 </div>
               </>
