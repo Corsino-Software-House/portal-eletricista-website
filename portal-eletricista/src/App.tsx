@@ -44,6 +44,7 @@ import OtpAdmin from "./pages/forgotPasswordAdmin/Otp/otpAdmin";
 import AlterarSenhaAdmin from "./pages/forgotPasswordAdmin/alterarSenha/alterarSenhaAdmin";
 import MeusProjetos from "./pages/MeusProjetos/MeusProjetos";
 import ListarReviews from "./pages/listagemReviews/ListagemReviews";
+import CheckoutGateways from "./pages/checkoutPlano/checkoutPlano";
 
 const router = createBrowserRouter([
   { path: "/", element: <Inicio /> },
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/creditos", element: <PlanosDeCreditos /> },
+  { path: "/checkout/:plano", element: <CheckoutGateways /> },
   {path: "cliente/esqueci-senha", element: <ForgotPasswordCliente /> },
   {path: "cliente/otp", element: <OtpCliente /> },
   {path: "cliente/alterar-senha", element: <AlterarSenhaCliente /> },

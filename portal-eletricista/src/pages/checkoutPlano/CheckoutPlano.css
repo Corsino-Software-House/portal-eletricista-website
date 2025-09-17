@@ -1,0 +1,112 @@
+.checkout-page {
+  background: #f4f6f8;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-wrapper {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.checkout-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.checkout-card h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Lista de pagamentos */
+.payment-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.payment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #fafafa;
+}
+
+.payment-item:hover {
+  border-color: #00c896;
+  background: #f0fffb;
+}
+
+.payment-item.selected {
+  border-color: #00c896;
+  background: #f0fffb;
+  box-shadow: 0 0 10px rgba(0,200,150,0.2);
+}
+
+.payment-icon {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.payment-label {
+  flex: 1;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Sumário */
+.checkout-summary {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e6e6e6;
+  font-size: 15px;
+}
+
+.checkout-summary p {
+  margin: 0.3rem 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.checkout-summary strong {
+  color: #333;
+}
+
+/* Botão */
+.checkout-button {
+  background: linear-gradient(135deg, #00c896, #00a67a);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.checkout-button:hover {
+  background: linear-gradient(135deg, #00b184, #00996e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,200,150,0.4);
+}
